@@ -262,7 +262,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 }
 .vcard--local .vcard__media { aspect-ratio: 16 / 10; }
 .vcard--reel .vcard__media { aspect-ratio: 9 / 16; }
-.vcard:hover .vcard__media, .vcard.is-active .vcard__media {
+.vcard.is-active .vcard__media {
   transform: translateY(-4px);
   border-color: rgba(180,60,240,0.55);
   box-shadow: 0 24px 60px -24px var(--accent-glow), 0 0 0 1px rgba(180,60,240,0.25);
@@ -274,7 +274,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .vcard__player iframe { transform: scale(1.02); }
 .vcard.is-playing .vcard__player { opacity: 1; }
 .vcard__thumb { transition: opacity 0.5s, transform 0.8s var(--ease); }
-.vcard:hover .vcard__thumb { transform: scale(1.04); }
+
 .vcard.is-playing .vcard__thumb { opacity: 0; }
 
 .vcard__tag {
@@ -293,15 +293,34 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .vcard__play::before { content: ""; margin-left: 4px; border-left: 16px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; }
 .vcard.is-playing .vcard__play { opacity: 0; transform: scale(0.8); }
 
+/* Control de sonido: barrita de volumen + botón (arriba a la derecha) */
+.sound-ctl {
+  position: absolute; right: 12px; top: 12px; z-index: 6;
+  display: flex; align-items: center; gap: 8px;
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s var(--ease);
+}
+.vcard.is-playing .sound-ctl, .sound-ctl:focus-within, .sound-ctl--show { opacity: 1; transform: none; }
+.sound-ctl__vol {
+  -webkit-appearance: none; appearance: none;
+  width: 0; height: 28px; padding: 0 10px; margin: 0; opacity: 0; pointer-events: none;
+  border-radius: 999px; background: rgba(7,6,9,0.7); backdrop-filter: blur(6px);
+  accent-color: var(--accent); cursor: pointer;
+  transition: width 0.35s var(--ease), opacity 0.3s;
+}
+.sound-ctl.is-on .sound-ctl__vol { width: 96px; opacity: 1; pointer-events: auto; }
+.sound-ctl__vol::-webkit-slider-runnable-track { height: 4px; border-radius: 4px; background: rgba(255,255,255,0.3); }
+.sound-ctl__vol::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 14px; margin-top: -5px; border-radius: 50%; background: #fff; box-shadow: 0 0 10px var(--accent-glow); }
+.sound-ctl__vol::-moz-range-track { height: 4px; border-radius: 4px; background: rgba(255,255,255,0.3); }
+.sound-ctl__vol::-moz-range-progress { height: 4px; border-radius: 4px; background: var(--accent); }
+.sound-ctl__vol::-moz-range-thumb { width: 14px; height: 14px; border: 0; border-radius: 50%; background: #fff; }
 .sound-btn {
-  position: absolute; right: 12px; top: 12px; z-index: 4;
+  position: relative; flex: none;
   width: 40px; height: 40px; border-radius: 50%;
   display: grid; place-items: center;
   background: rgba(7,6,9,0.7); backdrop-filter: blur(6px); border: 1px solid var(--line-2);
-  opacity: 0; transform: translateY(6px);
-  transition: opacity 0.3s, transform 0.3s var(--ease), background 0.3s, border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s;
 }
-.vcard:hover .sound-btn, .vcard.is-playing .sound-btn, .sound-btn:focus-visible { opacity: 1; transform: none; }
 .sound-btn::before { /* icono altavoz tachado / con ondas */
   content: ""; width: 20px; height: 20px;
   background: currentColor;
@@ -309,7 +328,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H2v6h4l5 4V5z'/%3E%3Cline x1='23' y1='9' x2='17' y2='15'/%3E%3Cline x1='17' y1='9' x2='23' y2='15'/%3E%3C/svg%3E");
 }
 .sound-btn.is-on { background: var(--accent); border-color: var(--accent); }
-.sound-btn--show { opacity: 1; transform: none; }
+
 
 /* Barra de tiempo (adelantar / retroceder) */
 .scrub {
@@ -319,7 +338,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   background: linear-gradient(0deg, rgba(7,6,9,0.8), transparent);
   opacity: 0; transition: opacity 0.3s;
 }
-.vcard.is-playing .scrub, .flyer__media:hover .scrub, .scrub:focus-visible, .scrub.is-dragging { opacity: 1; }
+.vcard.is-playing .scrub, .scrub:focus-visible, .scrub.is-dragging { opacity: 1; }
 .scrub:focus-visible { outline: none; }
 .scrub__time { font-family: var(--f-mono); font-size: 11px; color: #ece7f3; letter-spacing: 0.04em; }
 .scrub__rail { position: relative; height: 4px; border-radius: 4px; background: rgba(255,255,255,0.22); transition: height 0.2s; }
@@ -386,7 +405,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .featured__stats + .featured__chips { margin-top: 0; }
 .featured__actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .featured .vcard.is-full .vcard__player { opacity: 1; pointer-events: auto; }
-.featured .vcard.is-full .vcard__thumb, .featured .vcard.is-full .vcard__play, .featured .vcard.is-full .sound-btn { opacity: 0; pointer-events: none; }
+.featured .vcard.is-full .vcard__thumb, .featured .vcard.is-full .vcard__play, .featured .vcard.is-full .sound-ctl { opacity: 0; pointer-events: none; }
 .featured .vcard.is-full .scrub { display: none; }
 
 /* ---------- flyers ---------- */
@@ -409,6 +428,16 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   border-radius: var(--radius); border: 1px solid var(--line);
   background: var(--surface);
   transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s;
+}
+@media (hover: hover) {
+  /* Efectos al pasar el cursor: solo en computador (en celular causaban el doble toque) */
+  .vcard:hover .vcard__media {
+    transform: translateY(-4px); border-color: rgba(180,60,240,0.55);
+    box-shadow: 0 24px 60px -24px var(--accent-glow), 0 0 0 1px rgba(180,60,240,0.25);
+  }
+  .vcard:hover .vcard__thumb { transform: scale(1.04); }
+  .vcard:hover .sound-ctl { opacity: 1; transform: none; }
+  .flyer__media:hover .scrub { opacity: 1; }
 }
 .flyer:hover > img, .flyer:hover > video, .flyer:hover .flyer__media > video {
   transform: translateY(-4px); border-color: rgba(180,60,240,0.5);
@@ -464,6 +493,17 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .compare__switch button:hover { color: #fff; }
 .compare[data-state="before"] [data-to="0"],
 .compare[data-state="after"] [data-to="100"] { background: var(--accent); color: #fff; }
+
+/* Miniaturas para YouTube */
+.thumb-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.thumb { margin: 0; cursor: zoom-in; }
+.thumb img {
+  width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: var(--radius); border: 1px solid var(--line);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s;
+}
+.thumb:hover img { transform: translateY(-4px); border-color: rgba(180,60,240,0.5); box-shadow: 0 24px 60px -24px var(--accent-glow); }
+.thumb figcaption { padding: 12px 4px 0; font-weight: 600; font-size: 15px; }
 
 /* ---------- branding ---------- */
 .case {
@@ -592,6 +632,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   .case { grid-template-columns: 1fr; }
   .skill-grid { grid-template-columns: repeat(2, 1fr); }
   .flyer-grid { grid-template-columns: repeat(2, 1fr); }
+  .thumb-grid { grid-template-columns: repeat(2, 1fr); }
+  .thumb-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 11px); }
   /* si queda un flyer solo en la última fila, se centra */
   .flyer-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 11px); }
 }
@@ -608,12 +650,14 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   .video-grid, .local-grid { grid-template-columns: 1fr; }
   .about__facts { grid-template-columns: 1fr; }
   .skill-grid { grid-template-columns: 1fr; }
+  .thumb-grid { grid-template-columns: 1fr; }
+  .thumb-grid > :last-child:nth-child(odd) { width: 100%; }
   .logo-grid { grid-template-columns: 1fr; }
   .compare-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
   .soft { grid-template-columns: 1fr; }
   .timeline li { grid-template-columns: 1fr; }
   .timeline__year { grid-row: auto; margin-bottom: 4px; }
-  .sound-btn { opacity: 1; transform: none; }
+  .sound-ctl { opacity: 1; transform: none; }
   .hero__scroll { display: none; }
   .hero__bg img { object-position: 40% 20%; }
 }

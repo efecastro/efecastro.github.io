@@ -10,7 +10,8 @@
      3. Skills (tarjetas con estrellas)
      4. Videos (YouTube, videos propios, reels, destacado, sonido,
         barra de tiempo para adelantar / retroceder)
-     5. Flyers (animado con sonido, comparador antes/después, galería)
+     5. Flyers (animado con sonido, comparador antes/después, galería,
+        miniaturas de YouTube)
      6. Branding (caso de estudio y logos)
      7. Lightbox (ver imágenes en grande)
      8. Animaciones al hacer scroll
@@ -94,22 +95,37 @@
      4. VIDEOS
      ================================================================= */
 
-  /* ---- 4.1 Sonido: un solo interruptor para todos los videos ---- */
+  /* ---- 4.1 Sonido y volumen: un solo interruptor y un solo volumen para todo ----
+     El volumen se guarda en el navegador para la próxima visita. */
   let soundOn = false;
   let current = null; // tarjeta que se está reproduciendo
+  let volume = 0.6;   // volumen inicial (0 a 1)
+  try {
+    const saved = parseFloat(localStorage.getItem("fc-volume"));
+    if (!isNaN(saved)) volume = saved;
+  } catch (_) {}
+
+  // Botón de sonido + barrita de volumen (se usa en todas las tarjetas)
+  const soundControl = (attr = "data-sound", extra = "") => `
+    <div class="sound-ctl ${extra}">
+      <input class="sound-ctl__vol" type="range" min="0" max="100" step="1"
+             value="${Math.round(volume * 100)}" aria-label="Volumen" data-volume />
+      <button class="sound-btn" ${attr} aria-label="Activar sonido"></button>
+    </div>`;
 
   const syncSoundButtons = () =>
     $$("[data-sound]").forEach((b) => {
       b.classList.toggle("is-on", soundOn);
+      b.parentElement.classList.toggle("is-on", soundOn);
       b.setAttribute("aria-label", soundOn ? "Silenciar" : "Activar sonido");
     });
 
   const applySound = (card) => {
     if (!card) return;
-    if (card._video) card._video.muted = !soundOn;
+    if (card._video) { card._video.muted = !soundOn; card._video.volume = volume; }
     const p = card._player;
     if (p && p.mute) {
-      if (soundOn) { p.unMute(); p.setVolume(80); } else p.mute();
+      if (soundOn) { p.unMute(); p.setVolume(Math.round(volume * 100)); } else p.mute();
     }
   };
 
@@ -124,6 +140,23 @@
     if (card && !card.classList.contains("is-playing")) play(card);
     applySound(card);
   });
+
+  // Mover la barrita de volumen
+  document.addEventListener("input", (e) => {
+    if (!e.target.matches("[data-volume]")) return;
+    volume = e.target.value / 100;
+    $$("[data-volume]").forEach((r) => { if (r !== e.target) r.value = e.target.value; });
+    try { localStorage.setItem("fc-volume", volume); } catch (_) {}
+    applySound(current);
+    $$("main video").forEach((v) => (v.volume = volume));
+  });
+
+  // Que tocar el control de sonido no abra el lightbox ni pause el video
+  ["click", "pointerdown"].forEach((t) =>
+    document.addEventListener(t, (e) => {
+      if (e.target.closest(".sound-ctl__vol")) e.stopPropagation();
+    }, true)
+  );
 
   /* ---- 4.2 YouTube ---- */
   let ytReady;
@@ -145,7 +178,7 @@
           <div class="vcard__player"><div></div></div>
           <span class="vcard__play" aria-hidden="true"></span>
           ${v.tag ? `<span class="vcard__tag">${v.tag}</span>` : ""}
-          <button class="sound-btn" data-sound aria-label="Activar sonido"></button>
+          ${soundControl()}
         </div>
         <div class="vcard__info">
           <div>
@@ -178,33 +211,24 @@
       .catch(() => {});
   }
 
-  async function playYouTube(card) {
-    card._want = true;
-    await loadYouTubeAPI();
-    if (!card._want) return;
-
-    if (card._player && card._player.playVideo) {
-      applySound(card);
-      card._player.playVideo();
-      return;
-    }
+  // Crea el reproductor de YouTube dentro de la tarjeta (una sola vez)
+  function createPlayer(card, autoplay) {
     if (card._creating) return;
     card._creating = true;
-
     const id = card.dataset.yt;
     card._player = new YT.Player($(".vcard__player > div", card), {
       host: "https://www.youtube-nocookie.com",
       videoId: id,
       playerVars: {
-        autoplay: 1, mute: 1, controls: 0, disablekb: 1, fs: 0, rel: 0,
+        autoplay: autoplay ? 1 : 0, mute: 1, controls: 0, disablekb: 1, fs: 0, rel: 0,
         iv_load_policy: 3, modestbranding: 1, playsinline: 1,
         start: +card.dataset.start || 0, loop: 1, playlist: id,
       },
       events: {
         onReady: (e) => {
+          card._ready = true;
           e.target.mute();
           if (card._want) { e.target.playVideo(); applySound(card); }
-          else e.target.pauseVideo();
         },
         onStateChange: (e) => {
           if (e.data !== YT.PlayerState.PLAYING) return;
@@ -213,6 +237,17 @@
         },
       },
     });
+  }
+
+  async function playYouTube(card) {
+    card._want = true;
+    if (card._ready) {            // ya preparado: reproducir al instante
+      card._player.playVideo();
+      applySound(card);
+      return;
+    }
+    await loadYouTubeAPI();
+    if (card._want) createPlayer(card, true);
   }
 
   function stopYouTube(card) {
@@ -339,17 +374,27 @@
       card.addEventListener("mouseleave", () => { clearTimeout(delay); stop(card); });
     } else {
       $(".vcard__media", card).addEventListener("click", (e) => {
-        if (e.target.closest("[data-sound]")) return;
+        if (e.target.closest(".sound-ctl, .scrub")) return;
         card.classList.contains("is-playing") ? stop(card) : play(card);
       });
     }
   }
+
+  /* ---- En celular: dejar listos los reproductores de YouTube antes de tocarlos,
+     así se reproducen con un solo toque ---- */
+  const preparePlayers = canHover ? null : new IntersectionObserver((entries) =>
+    entries.forEach(({ target, isIntersecting }) => {
+      if (!isIntersecting) return;
+      preparePlayers.unobserve(target);
+      loadYouTubeAPI().then(() => { if (!target._creating) createPlayer(target, false); });
+    }), { rootMargin: "300px 0px" });
 
   /* ---- 4.6 Dibujar la grilla de YouTube y los videos locales ---- */
   (DATA.youtube || []).forEach((v) => {
     const card = youtubeCard(v);
     $("#yt-grid").appendChild(card);
     bindVideoCard(card);
+    if (preparePlayers) preparePlayers.observe(card);
   });
 
   // Videos propios (horizontales) y reels (verticales) desde data.js
@@ -359,7 +404,7 @@
         <video src="${v.src}" poster="${v.poster || ""}" muted loop playsinline preload="none"></video>
         <span class="vcard__play" aria-hidden="true"></span>
         ${v.tag ? `<span class="vcard__tag">${esc(v.tag)}</span>` : ""}
-        <button class="sound-btn" data-sound aria-label="Activar sonido"></button>
+        ${soundControl()}
       </div>
       <div class="vcard__info">
         <h4>${esc(v.title)}</h4>
@@ -404,6 +449,7 @@
     featuredBox.append(card, text);
     fetchTitle(F.id, text);
     bindVideoCard(card);
+    if (preparePlayers) preparePlayers.observe(card);
 
     // "Ver completo": reproductor normal con controles y sonido
     $("[data-full]", text).addEventListener("click", () => {
@@ -430,7 +476,7 @@
       <figure class="flyer flyer--feature" data-zoom="${a.video}" data-zoom-type="video">
         <div class="flyer__media">
           <video src="${a.video}" poster="${a.poster}" muted loop playsinline preload="none" data-autoplay></video>
-          <button class="sound-btn sound-btn--show" data-flyer-sound aria-label="Activar sonido"></button>
+          ${soundControl("data-flyer-sound", "sound-ctl--show")}
         </div>
         <figcaption><span>${esc(a.title)}</span><em>Flyer animado</em></figcaption>
       </figure>`);
@@ -441,8 +487,10 @@
     soundBtn.addEventListener("click", (e) => {
       e.stopPropagation(); // que no abra el lightbox
       video.muted = !video.muted;
+      video.volume = volume;
       if (!video.muted) video.play().catch(() => {});
       soundBtn.classList.toggle("is-on", !video.muted);
+      soundBtn.parentElement.classList.toggle("is-on", !video.muted);
       soundBtn.setAttribute("aria-label", video.muted ? "Activar sonido" : "Silenciar");
     });
     // si se sale de la pantalla, vuelve a silencio
@@ -529,6 +577,15 @@
       </figure>`))
   );
 
+  /* ---- 5.3b Miniaturas para YouTube ---- */
+  (DATA.thumbnails || []).forEach((t) =>
+    $("#thumb-grid").appendChild(html(`
+      <figure class="thumb reveal" data-zoom="${t.src}">
+        <img src="${t.src}" alt="Miniatura ${esc(t.title)}" loading="lazy" />
+        <figcaption>${esc(t.title)}</figcaption>
+      </figure>`))
+  );
+
   /* ---- 5.4 Los flyers animados solo se reproducen si están en pantalla ---- */
   const autoplayObserver = new IntersectionObserver((entries) =>
     entries.forEach(({ target: v, isIntersecting }) => {
@@ -598,6 +655,7 @@
   };
 
   document.addEventListener("click", (e) => {
+    if (e.target.closest(".sound-ctl, .scrub")) return;
     const el = e.target.closest("[data-zoom]");
     if (!el) return;
     const img = el.matches("img") ? el : $("img", el);

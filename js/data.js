@@ -45,7 +45,11 @@ window.PORTFOLIO = {
     { id: "vXFsQtfSjt4", start: 0, title: "Proyecto de edición 01", tag: "Edición" },
     { id: "ibprGbaymQs", start: 0, title: "Proyecto de edición 02", tag: "Edición" },
     { id: "ukBh2uggr-k", start: 0, title: "Proyecto de edición 03", tag: "Edición" },
-    { id: "KK1nc_PxGos", start: 0, title: "Proyecto de edición 04", tag: "Edición" }
+    { id: "KK1nc_PxGos", start: 0, title: "Proyecto de edición 04", tag: "Edición" },
+    { id: "3-H3vd8yy_s", start: 0, title: "Proyecto de edición 05", tag: "Edición" },
+    { id: "VvJ3CB8Ldms", start: 0, title: "Proyecto de edición 06", tag: "Edición" },
+    { id: "FdMZ-978Uks", start: 0, title: "Proyecto de edición 07", tag: "Edición" },
+    { id: "fp6rIgDhjpE", start: 0, title: "Proyecto de edición 08", tag: "Edición" }
   ],
 
   /* Video especial (fondo blanco), en grande al final de la sección.
@@ -77,7 +81,9 @@ window.PORTFOLIO = {
      ------------------------------------------------------------------ */
   reels: [
     { title: "Make up 21 años", text: "Reel para TikTok: subtítulos dinámicos, inserts y ritmo vertical.", tag: "TikTok",
-      src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg" }
+      src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg" },
+    { title: "FEM · Karen Giraldo", text: "Reel publicitario: subtítulos dinámicos y cortes al ritmo del mensaje.", tag: "Publicidad",
+      src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg" }
   ],
 
   /* ------------------------------------------------------------------
@@ -104,6 +110,15 @@ window.PORTFOLIO = {
       { title: "Special Birthday",     src: "assets/flyers/special-birthday.webp" }
     ]
   },
+
+  /* ------------------------------------------------------------------
+     3.1 MINIATURAS PARA YOUTUBE (imágenes 16:9 en assets/thumbs)
+     ------------------------------------------------------------------ */
+  thumbnails: [
+    { title: "Squid Games Colombia · Día 1", src: "assets/thumbs/squid-games-dia-1.webp" },
+    { title: "Squid Games Colombia · Día 4", src: "assets/thumbs/squid-games-dia-4.webp" },
+    { title: "GTA San Andreas Colombia",     src: "assets/thumbs/gta-san-andreas-colombia.webp" }
+  ],
 
   /* ------------------------------------------------------------------
      4. BRANDING
