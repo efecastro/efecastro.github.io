@@ -123,10 +123,6 @@
   const applySound = (card) => {
     if (!card) return;
     if (card._video) { card._video.muted = !soundOn; card._video.volume = volume; }
-    const p = card._player;
-    if (p && p.mute) {
-      if (soundOn) { p.unMute(); p.setVolume(Math.round(volume * 100)); } else p.mute();
-    }
   };
 
   document.addEventListener("click", (e) => {
@@ -158,31 +154,30 @@
     }, true)
   );
 
-  /* ---- 4.2 YouTube ---- */
-  let ytReady;
-  const loadYouTubeAPI = () =>
-    ytReady ||
-    (ytReady = new Promise((resolve) => {
-      if (window.YT && YT.Player) return resolve();
-      window.onYouTubeIframeAPIReady = resolve;
-      const s = document.createElement("script");
-      s.src = "https://www.youtube.com/iframe_api";
-      document.head.appendChild(s);
-    }));
+  /* ---- 4.2 YouTube ----
+     La vista previa al pasar el cursor NO usa YouTube (los anuncios la trababan).
+     - Si el video tiene "preview" en data.js → se reproduce ese clip corto (sin anuncios).
+     - Si no, la miniatura se anima suavemente.
+     - Clic (o toque en celular) → reproductor normal de YouTube con controles y sonido;
+       si sale un anuncio, aparece "Omitir" como en YouTube. */
+  const ytEmbed = (id, start = 0, autoplay = true) =>
+    `<iframe src="https://www.youtube-nocookie.com/embed/${id}?${autoplay ? "autoplay=1&" : ""}start=${start}&rel=0&modestbranding=1&playsinline=1"
+       title="Video de YouTube" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
 
   function youtubeCard(v, extraClass = "") {
     const card = html(`
       <article class="vcard reveal ${extraClass}" data-yt="${v.id}" data-start="${v.start || 0}">
         <div class="vcard__media">
+          ${v.preview ? `<video class="vcard__preview" src="${v.preview}" muted loop playsinline preload="none"></video>` : ""}
           <img class="vcard__thumb" src="https://i.ytimg.com/vi/${v.id}/maxresdefault.jpg" alt="" loading="lazy" />
-          <div class="vcard__player"><div></div></div>
+          <div class="vcard__player"></div>
           <span class="vcard__play" aria-hidden="true"></span>
-          ${v.tag ? `<span class="vcard__tag">${v.tag}</span>` : ""}
-          ${soundControl()}
+          ${v.tag ? `<span class="vcard__tag">${esc(v.tag)}</span>` : ""}
+          ${v.preview ? soundControl() : ""}
         </div>
         <div class="vcard__info">
           <div>
-            <h4 data-title>${v.title || ""}</h4>
+            <h4 data-title>${esc(v.title || "")}</h4>
             <p data-author>YouTube</p>
           </div>
           <a class="vcard__yt" href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">Ver ↗</a>
@@ -211,49 +206,39 @@
       .catch(() => {});
   }
 
-  // Crea el reproductor de YouTube dentro de la tarjeta (una sola vez)
-  function createPlayer(card, autoplay) {
-    if (card._creating) return;
-    card._creating = true;
-    const id = card.dataset.yt;
-    card._player = new YT.Player($(".vcard__player > div", card), {
-      host: "https://www.youtube-nocookie.com",
-      videoId: id,
-      playerVars: {
-        autoplay: autoplay ? 1 : 0, mute: 1, controls: 0, disablekb: 1, fs: 0, rel: 0,
-        iv_load_policy: 3, modestbranding: 1, playsinline: 1,
-        start: +card.dataset.start || 0, loop: 1, playlist: id,
-      },
-      events: {
-        onReady: (e) => {
-          card._ready = true;
-          e.target.mute();
-          if (card._want) { e.target.playVideo(); applySound(card); }
-        },
-        onStateChange: (e) => {
-          if (e.data !== YT.PlayerState.PLAYING) return;
-          if (card._want) { card.classList.add("is-playing"); applySound(card); }
-          else e.target.pauseVideo();
-        },
-      },
-    });
+  // Abre el reproductor completo de YouTube dentro de la tarjeta.
+  // Solo uno a la vez: al abrir otro, el anterior se cierra.
+  let openFullCard = null;
+  function openFull(card, autoplay = true) {
+    if (card.classList.contains("is-full")) return;
+    if (openFullCard && openFullCard !== card) closeFull(openFullCard);
+    if (card._video) stop(card);
+    $(".vcard__player", card).innerHTML = ytEmbed(card.dataset.yt, +card.dataset.start || 0, autoplay);
+    card.classList.add("is-full");
+    if (autoplay) openFullCard = card;
+  }
+  function closeFull(card) {
+    $(".vcard__player", card).innerHTML = "";
+    card.classList.remove("is-full");
+    if (openFullCard === card) openFullCard = null;
   }
 
-  async function playYouTube(card) {
-    card._want = true;
-    if (card._ready) {            // ya preparado: reproducir al instante
-      card._player.playVideo();
-      applySound(card);
+  function bindYouTubeCard(card) {
+    card._video = $(".vcard__preview", card) || null;
+    if (!canHover) {
+      // Celular: reproductor de YouTube directo (un toque y reproduce)
+      openFull(card, false);
       return;
     }
-    await loadYouTubeAPI();
-    if (card._want) createPlayer(card, true);
-  }
-
-  function stopYouTube(card) {
-    card._want = false;
-    card.classList.remove("is-playing");
-    if (card._player && card._player.pauseVideo) card._player.pauseVideo();
+    if (card._video) {
+      let delay;
+      card.addEventListener("mouseenter", () => { delay = setTimeout(() => play(card), 180); });
+      card.addEventListener("mouseleave", () => { clearTimeout(delay); stop(card); });
+    }
+    $(".vcard__media", card).addEventListener("click", (e) => {
+      if (e.target.closest(".sound-ctl, .scrub")) return;
+      openFull(card);
+    });
   }
 
   /* ---- 4.3 Videos alojados en el sitio (assets/video) ---- */
@@ -340,31 +325,24 @@
     seek: (t) => { v.currentTime = t; },
   });
 
-  // Fuente para una tarjeta (video propio o YouTube)
-  const cardSource = (card) => () => {
-    if (card._video) return videoSource(card._video)();
-    const p = card._player;
-    if (p && p.getDuration) {
-      return { duration: p.getDuration(), current: p.getCurrentTime(), seek: (t) => p.seekTo(t, true) };
-    }
-    return null;
-  };
+  // Fuente para una tarjeta con video propio
+  const cardSource = (card) => () => (card._video ? videoSource(card._video)() : null);
 
   /* ---- 4.5 Control común: reproducir / detener ---- */
   function play(card) {
-    if (card.classList.contains("is-full")) return;
+    if (card.classList.contains("is-full") || !card._video) return;
     if (current && current !== card) stop(current);
     current = card;
     card.classList.add("is-active");
-    card._video ? playLocal(card) : playYouTube(card);
+    playLocal(card);
   }
   function stop(card) {
     card.classList.remove("is-active");
-    card._video ? stopLocal(card) : stopYouTube(card);
+    if (card._video) stopLocal(card);
     if (current === card) current = null;
   }
 
-  // Computador: pasar el cursor · Celular: tocar para reproducir/pausar
+  // Videos propios · Computador: pasar el cursor · Celular: tocar para reproducir/pausar
   function bindVideoCard(card) {
     card._video = $("video", card) || null;
     addScrubBar($(".vcard__media", card), cardSource(card));
@@ -380,21 +358,11 @@
     }
   }
 
-  /* ---- En celular: dejar listos los reproductores de YouTube antes de tocarlos,
-     así se reproducen con un solo toque ---- */
-  const preparePlayers = canHover ? null : new IntersectionObserver((entries) =>
-    entries.forEach(({ target, isIntersecting }) => {
-      if (!isIntersecting) return;
-      preparePlayers.unobserve(target);
-      loadYouTubeAPI().then(() => { if (!target._creating) createPlayer(target, false); });
-    }), { rootMargin: "300px 0px" });
-
   /* ---- 4.6 Dibujar la grilla de YouTube y los videos locales ---- */
   (DATA.youtube || []).forEach((v) => {
     const card = youtubeCard(v);
     $("#yt-grid").appendChild(card);
-    bindVideoCard(card);
-    if (preparePlayers) preparePlayers.observe(card);
+    bindYouTubeCard(card);
   });
 
   // Videos propios (horizontales) y reels (verticales) desde data.js
@@ -448,18 +416,11 @@
 
     featuredBox.append(card, text);
     fetchTitle(F.id, text);
-    bindVideoCard(card);
-    if (preparePlayers) preparePlayers.observe(card);
+    bindYouTubeCard(card);
 
     // "Ver completo": reproductor normal con controles y sonido
     $("[data-full]", text).addEventListener("click", () => {
-      stop(card);
-      if (card._player && card._player.destroy) card._player.destroy();
-      card._player = null;
-      card.classList.add("is-full");
-      $(".vcard__player", card).innerHTML = `
-        <iframe src="https://www.youtube-nocookie.com/embed/${F.id}?autoplay=1&start=${F.start || 0}&rel=0&modestbranding=1&playsinline=1"
-          title="Video destacado" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+      openFull(card);
       card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
     });
   }

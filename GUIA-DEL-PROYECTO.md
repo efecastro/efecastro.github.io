@@ -35,6 +35,10 @@ publicado gratis en GitHub Pages. Se edita en VS Code y se previsualiza con la e
 ## Cómo agregar cosas
 
 **Un video de YouTube:** en `data.js` → `youtube`, copia una línea y cambia el `id` (lo que va después de `watch?v=`).
+Al hacer clic se abre el reproductor normal de YouTube (con sonido y botón "Omitir" en los anuncios).
+En celular se muestra el reproductor de YouTube directamente.
+Opcional: `preview: "assets/previews/archivo.mp4"` = clip corto propio (10–15 s, sin audio importante)
+que se reproduce al pasar el cursor, sin anuncios. Sin preview, la miniatura solo se anima.
 
 **Vistas del video destacado:** `data.js` → `featured.views` (ej. `"25 K"`). Vacío = no se muestra.
 

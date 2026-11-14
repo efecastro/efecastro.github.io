@@ -40,6 +40,10 @@ window.PORTFOLIO = {
      id: lo que va después de "watch?v=" en el enlace
      start: segundo en que empieza la vista previa
      title: se usa solo si no se puede leer el título real de YouTube
+     preview (opcional): clip corto propio para la vista previa al pasar el
+              cursor, ej. "assets/previews/mi-video.mp4". Si no lo pones,
+              la miniatura solo se anima. Al hacer clic siempre se abre el
+              reproductor de YouTube con sonido.
      ------------------------------------------------------------------ */
   youtube: [
     { id: "vXFsQtfSjt4", start: 0, title: "Proyecto de edición 01", tag: "Edición" },
