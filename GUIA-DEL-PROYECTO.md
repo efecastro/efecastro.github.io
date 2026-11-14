@@ -22,7 +22,7 @@ La carpeta `sitio-web` es una copia vieja: se trabaja en la carpeta del reposito
 2. Sobre mí: bio y foto
 3. Trabajos: video destacado (fondo blanco) → destacados lado a lado (color grading y motion, en `highlights`)
    → Reels y TikToks (en `reels`)
-   → clientes desplegables (Andresitow primero y abierto, El Muñetones, Ñero Entertainment, c.kickssVlog, Pelicanger, say_guz,
+   → clientes desplegables (todos cerrados hasta tocarlos: Andresitow, El Muñetones, Ñero Entertainment, c.kickssVlog, Pelicanger, say_guz,
    LaJotadera, Karen Giraldo). Foto de perfil con `avatar` (imágenes en `assets/avatars/`, 200×200).
 4. Diseño: carrusel de flyers + miniaturas de YouTube
 5. Logos & branding: tarjetas por marca + caso Los Perritos del Piti
@@ -31,7 +31,7 @@ La carpeta `sitio-web` es una copia vieja: se trabaja en la carpeta del reposito
 8. Contacto + botón flotante de WhatsApp
 
 **Al publicar cambios grandes:** en `index.html` sube el número `?v=...` de `styles.css`, `data.js` y `main.js`
-(ej. `?v=20261113j` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
+(ej. `?v=20261114b` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
 Si aun así ves algo raro, recarga con Cmd + Shift + R.
 
 ## Cómo agregar cosas (todo en `js/data.js`)

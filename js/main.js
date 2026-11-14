@@ -44,6 +44,23 @@ addEventListener("error", () => document.documentElement.classList.remove("js"))
 
   $("#year").textContent = new Date().getFullYear();
 
+  /* Siempre empezar en la portada:
+     - el navegador no recuerda dónde quedaste la última vez
+     - si el enlace trae "#seccion" (ej. #diseno), se limpia */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (location.hash) history.replaceState(null, "", location.pathname + location.search);
+  scrollTo(0, 0);
+
+  // Los enlaces del menú bajan a su sección sin agregar "#..." a la dirección
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const target = a.getAttribute("href") === "#" ? null : $(a.getAttribute("href"));
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+  });
+
   /* =================================================================
      1. NAVEGACIÓN Y TIMECODE
      ================================================================= */
@@ -362,7 +379,7 @@ addEventListener("error", () => document.documentElement.classList.remove("js"))
     };
     $(".client__head", item).addEventListener("click", () => toggle(!item.classList.contains("is-open")));
     $("#clients").appendChild(item);
-    if (i === 0) toggle(true); // el primero sale abierto
+    // Todos los clientes empiezan cerrados; se abren al tocarlos
   });
 
   /* =================================================================
