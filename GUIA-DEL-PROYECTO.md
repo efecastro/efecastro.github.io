@@ -31,7 +31,7 @@ La carpeta `sitio-web` es una copia vieja: se trabaja en la carpeta del reposito
 8. Contacto + botón flotante de WhatsApp
 
 **Al publicar cambios grandes:** en `index.html` sube el número `?v=...` de `styles.css`, `data.js` y `main.js`
-(ej. `?v=20261113i` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
+(ej. `?v=20261113j` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
 Si aun así ves algo raro, recarga con Cmd + Shift + R.
 
 ## Cómo agregar cosas (todo en `js/data.js`)
