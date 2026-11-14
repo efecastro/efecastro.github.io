@@ -41,7 +41,7 @@ window.PORTFOLIO = {
   featured: {
     id: "fNx1N6XFDZk",
     start: 0,
-    client: "Andresosky",
+    client: "Andresitow",
     title: "Adivina la streamer 2",
     views: ""
   },
@@ -69,31 +69,47 @@ window.PORTFOLIO = {
      El orden de la lista es el orden en la página. El primero sale abierto.
      ------------------------------------------------------------------ */
   clients: [
-    { name: "Karen Giraldo", about: "Reels para TikTok e Instagram", videos: [
+    { name: "Andresitow", about: "Entretenimiento, reacciones y La Rosa de Guadalupe", avatar: "assets/avatars/andresitow.webp", videos: [
+      { yt: "ukBh2uggr-k", title: "El violín caso real · La Rosa de Guadalupe" },
+      { yt: "KK1nc_PxGos", title: "El episodio más PDF de La Rosa" },
+      { yt: "jl7InvZudOg", title: "La Rosa: el peor papá del mundo" },
+      { yt: "Hc_Nqsd1FJg", title: "El amigo Gusanín · La Rosa de Guadalupe" },
+      { yt: "2HvBFlU5ehY", title: "Aparece la virgencita · La Rosa de Guadalupe" },
+      { yt: "zEZcd4YSkxc", title: "Colombia sin contexto" }
+    ]},
+    { name: "El Muñetones", about: "Gaming · Serie completa Squid Games Colombia (edición y miniaturas), con patrocinio de Honda Motos", avatar: "assets/avatars/el-munetones.webp", videos: [
+      { yt: "SyFWuZfqzDo", title: "Squid Games Colombia · Día 1: JH pierde el primer día" },
+      { yt: "Nfb7Z0niPHo", title: "Squid Games Colombia · Día 2: Se me juntó el ganado" },
+      { yt: "BkCG98Dejk4", title: "Squid Games Colombia · Día 3: Me traicionan en la noche" },
+      { yt: "FBXdD6cgyhU", title: "Squid Games Colombia · Día 4: Increíble semifinal" },
+      { yt: "9CqUBgKhIQ8", title: "Squid Games Colombia · Final: Último día y ganador" },
+      { yt: "pLhYtKMVrcs", title: "Battlefield ha vuelto ft. Samulx · Battlefield 6" },
+      { yt: "3-H3vd8yy_s", title: "Locura de partidas en Hell Let Loose" }
+    ]},
+    { name: "Ñero Entertainment", about: "Retos, humor y entretenimiento", avatar: "assets/avatars/nero-entertainment.webp", videos: [
+      { yt: "xaZYn-pHIT0", title: "Adivinando famosos *sale re mal*" },
+      { yt: "VWWqJyllM5Y", title: "6 obesos jugando fútbol" },
+      { yt: "exjsRwUUJ-c", title: "Subimos Monserrate *sale mal*" },
+      { yt: "6l497aRGF9k", title: "MasterChef: detrás de cámaras" }
+    ]},
+    { name: "c.kickssVlog", about: "Vlogs de sneakers y emprendimiento", avatar: "assets/avatars/ckicks.webp", videos: [
+      { yt: "vXFsQtfSjt4", title: "El día que hicimos más de $5,000 vendiendo sneakers" },
+      { yt: "ibprGbaymQs", title: "Montamos nuestra tienda en el mall más grande del Caribe" }
+    ]},
+    { name: "Pelicanger", about: "Gaming y streams", avatar: "assets/avatars/pelicanger.webp", videos: [
+      { yt: "VvJ3CB8Ldms", title: "Lo mejor de Pelicanger 2024" }
+    ]},
+    { name: "say_guz", about: "Streamers y entretenimiento", avatar: "assets/avatars/say-guz.webp", videos: [
+      { yt: "FdMZ-978Uks", title: "Calificando streamers con mis amigas" }
+    ]},
+    { name: "LaJotadera", about: "Podcast de fútbol", avatar: "assets/avatars/lajotadera.webp", videos: [
+      { yt: "fp6rIgDhjpE", title: "¡Campeones! Medellín FC destruyó La Copa Creadores" }
+    ]},
+    { name: "Karen Giraldo", about: "@karen_333 · Reels para TikTok e Instagram", videos: [
       { src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg",
         title: "Make up 21 años", vertical: true },
       { src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg",
         title: "FEM · Reel publicitario", vertical: true }
-    ]},
-    { name: "c.kickssVlog", about: "Vlogs de sneakers y emprendimiento", videos: [
-      { yt: "vXFsQtfSjt4", title: "El día que hicimos más de $5,000 vendiendo sneakers" },
-      { yt: "ibprGbaymQs", title: "Montamos nuestra tienda en el mall más grande del Caribe" }
-    ]},
-    { name: "Andresosky", about: "Entretenimiento y reacciones", videos: [
-      { yt: "ukBh2uggr-k", title: "El violín caso real · La Rosa de Guadalupe" },
-      { yt: "KK1nc_PxGos", title: "El episodio más PDF de La Rosa" }
-    ]},
-    { name: "LaJotadera", about: "Fútbol y creadores", videos: [
-      { yt: "fp6rIgDhjpE", title: "¡Campeones! Medellín FC destruyó La Copa Creadores" }
-    ]},
-    { name: "Pelicanger", about: "Gaming y streams", videos: [
-      { yt: "VvJ3CB8Ldms", title: "Lo mejor de Pelicanger 2024" }
-    ]},
-    { name: "say_guz", about: "Streamers y entretenimiento", videos: [
-      { yt: "FdMZ-978Uks", title: "Calificando streamers con mis amigas" }
-    ]},
-    { name: "El Muñetones", about: "Gaming", videos: [
-      { yt: "3-H3vd8yy_s", title: "Locura de partidas en Hell Let Loose" }
     ]}
   ],
 
@@ -117,7 +133,10 @@ window.PORTFOLIO = {
      ------------------------------------------------------------------ */
   thumbnails: [
     { title: "Squid Games Colombia · Día 1", src: "assets/thumbs/squid-games-dia-1.webp" },
+    { title: "Squid Games Colombia · Día 2", src: "assets/thumbs/squid-games-dia-2.webp" },
+    { title: "Squid Games Colombia · Día 3", src: "assets/thumbs/squid-games-dia-3.webp" },
     { title: "Squid Games Colombia · Día 4", src: "assets/thumbs/squid-games-dia-4.webp" },
+    { title: "Squid Games Colombia · Final", src: "assets/thumbs/squid-games-final.webp" },
     { title: "GTA San Andreas Colombia",     src: "assets/thumbs/gta-san-andreas-colombia.webp" }
   ],
 

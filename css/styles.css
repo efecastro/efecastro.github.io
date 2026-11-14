@@ -622,7 +622,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .client.is-open .client__body { grid-template-rows: 1fr; }
 .client__inner { overflow: hidden; }
 .client__grid { display: flex; flex-wrap: wrap; gap: 18px; padding: 4px 18px 20px; }
-.client__grid .vcard { flex: 1 1 320px; max-width: calc(50% - 9px); }
+.client__grid .vcard { flex: 1 1 260px; max-width: calc(33.333% - 12px); }
+.client__grid .vcard__info h4 { font-size: 15px; }
 .client__grid .vcard--reel { flex: 0 0 220px; max-width: 220px; }
 @media (hover: hover) {
   .client__head:hover .client__thumbs img { transform: translateX(6px); }
@@ -689,8 +690,14 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .contact__mail:hover { color: var(--accent); }
 .contact__actions { margin: 30px 0 34px; }
 .socials { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
-.socials a { display: inline-block; padding: 9px 18px; border: 1px solid var(--line-2); border-radius: 999px; font-size: 14px; font-weight: 500; transition: background 0.2s, border-color 0.2s; }
-.socials a:hover { background: rgba(255,255,255,0.06); border-color: var(--accent); }
+.socials { gap: 12px; }
+.socials a {
+  width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid var(--line-2); background: rgba(255,255,255,0.03); color: #fff;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease), box-shadow 0.3s;
+}
+.socials svg { width: 22px; height: 22px; }
+.socials a:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 10px 30px -8px var(--accent-glow); }
 
 .footer { max-width: var(--wrap); margin: 0 auto; padding: 28px var(--pad) 40px; display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); }
 .footer a:hover { color: #fff; }
@@ -718,6 +725,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   .brand-grid { grid-template-columns: repeat(2, 1fr); }
   .skills, .edu { grid-template-columns: 1fr; }
   .highlights { grid-template-columns: 1fr; }
+  .client__grid .vcard { max-width: calc(50% - 9px); }
   .client__thumbs { display: none; }
   .client__head { grid-template-columns: 48px 1fr auto 24px; }
 }

@@ -21,7 +21,8 @@ La carpeta `sitio-web` es una copia vieja: se trabaja en la carpeta del reposito
 1. Portada (nombre grande, timecode)
 2. Sobre mí: bio y foto
 3. Trabajos: video destacado (fondo blanco) → destacados lado a lado (color grading y motion, en `highlights`)
-   → clientes desplegables (Karen Giraldo primero, abierto; luego los de YouTube). Foto de perfil con `avatar`.
+   → clientes desplegables (Andresitow primero y abierto, El Muñetones, Ñero Entertainment, c.kickssVlog, Pelicanger, say_guz,
+   LaJotadera, Karen Giraldo). Foto de perfil con `avatar` (imágenes en `assets/avatars/`, 200×200).
 4. Diseño: carrusel de flyers + miniaturas de YouTube
 5. Logos & branding: tarjetas por marca + caso Los Perritos del Piti
 6. Habilidades: skills con estrellas, educación, idiomas
@@ -29,7 +30,7 @@ La carpeta `sitio-web` es una copia vieja: se trabaja en la carpeta del reposito
 8. Contacto + botón flotante de WhatsApp
 
 **Al publicar cambios grandes:** en `index.html` sube el número `?v=...` de `styles.css`, `data.js` y `main.js`
-(ej. `?v=20261113c` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
+(ej. `?v=20261113g` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
 Si aun así ves algo raro, recarga con Cmd + Shift + R.
 
 ## Cómo agregar cosas (todo en `js/data.js`)
@@ -68,4 +69,4 @@ Varias imágenes = variaciones que cambian al tocar. Usa PNG/WebP con fondo tran
 - [ ] Nuevo video de color grading (antes/después).
 - [ ] Vistas del video de fondo blanco.
 - [ ] Clips de vista previa para los videos de YouTube.
-- [ ] Showreel de 30–60 s, testimonios de clientes, cuenta de TikTok en Contacto.
+- [ ] Showreel de 30–60 s, testimonios de clientes, TikTok ya está en Contacto (@efecastrooo).
