@@ -19,18 +19,18 @@ window.PORTFOLIO = {
   skills: {
     creative: [
       { name: "Premiere Pro",  badge: "Pr", color: "#9999ff", bg: "#00005b", level: 5,   note: "Edición, ritmo, multicámara" },
-      { name: "After Effects", badge: "Ae", color: "#9999ff", bg: "#00005b", level: 4,   note: "Motion graphics, tracking, VFX" },
+      { name: "After Effects", badge: "Ae", color: "#9999ff", bg: "#00005b", level: 3,   note: "Motion graphics, tracking, VFX" },
       { name: "CapCut Pro",    badge: "Cc", color: "#ffffff", bg: "#161616", level: 5,   note: "Contenido vertical y reels" },
-      { name: "Photoshop",     badge: "Ps", color: "#31a8ff", bg: "#001e36", level: 4.5, note: "Flyers, retoque, composición" },
-      { name: "Illustrator",   badge: "Ai", color: "#ff9a00", bg: "#330000", level: 4,   note: "Logos e identidad de marca" },
-      { name: "Lightroom",     badge: "Lr", color: "#31a8ff", bg: "#001e36", level: 4,   note: "Color y revelado de foto" }
+      { name: "Photoshop",     badge: "Ps", color: "#31a8ff", bg: "#001e36", level: 4, note: "Flyers, retoque, composición" },
+      { name: "Illustrator",   badge: "Ai", color: "#ff9a00", bg: "#330000", level: 3,   note: "Logos e identidad de marca" },
+      { name: "Lightroom",     badge: "Lr", color: "#31a8ff", bg: "#001e36", level: 5,   note: "Color y revelado de foto" }
     ],
     code: [
       { name: "Python",               badge: "Py",  color: "#ffd43b", bg: "#14304f", level: 4,   note: "Scripts, lógica, automatización" },
-      { name: "C#",                   badge: "C#",  color: "#d9a7ff", bg: "#2b0f3a", level: 3.5, note: "Aplicaciones y POO" },
-      { name: "Java",                 badge: "Jv",  color: "#f89820", bg: "#2a1406", level: 2.5, note: "Bases y Android Studio" },
+      { name: "C#",                   badge: "C#",  color: "#d9a7ff", bg: "#2b0f3a", level: 5, note: "Aplicaciones y POO" },
+      { name: "Java",                 badge: "Jv",  color: "#f89820", bg: "#2a1406", level: 2, note: "Bases y Android Studio" },
       { name: "HTML & CSS",           badge: "</>", color: "#ff7a45", bg: "#2a0f05", level: 4,   note: "Sitios web y maquetación" },
-      { name: "Bases de datos",       badge: "DB",  color: "#4fd1c5", bg: "#062a2a", level: 3.5, note: "SQL y MySQL" },
+      { name: "Bases de datos",       badge: "DB",  color: "#4fd1c5", bg: "#062a2a", level: 4, note: "SQL y MySQL" },
       { name: "Servicios en la nube", badge: "☁",   color: "#8ec5ff", bg: "#0a1e33", level: 3,   note: "Despliegue y servicios cloud" }
     ]
   },
@@ -122,6 +122,22 @@ window.PORTFOLIO = {
     { title: "Squid Games Colombia · Día 1", src: "assets/thumbs/squid-games-dia-1.webp" },
     { title: "Squid Games Colombia · Día 4", src: "assets/thumbs/squid-games-dia-4.webp" },
     { title: "GTA San Andreas Colombia",     src: "assets/thumbs/gta-san-andreas-colombia.webp" }
+  ],
+
+  /* ------------------------------------------------------------------
+     5. SERVICIOS (cada uno tiene botón "Cotizar" por WhatsApp)
+     msg: lo que aparece en el mensaje de WhatsApp ("quiero cotizar ...")
+     ------------------------------------------------------------------ */
+  whatsapp: "573116784485",
+  services: [
+    { title: "Reels y TikToks",     msg: "edición de reels / TikToks",
+      text: "Edición vertical con ritmo, subtítulos dinámicos, efectos y música para que la gente vea hasta el final." },
+    { title: "Videos para YouTube", msg: "edición de videos para YouTube",
+      text: "Edición completa: cortes, color, sonido y motion graphics para que tu video se sienta pro." },
+    { title: "Miniaturas",          msg: "miniaturas para YouTube",
+      text: "Miniaturas llamativas y claras que invitan al clic." },
+    { title: "Flyers y logos",      msg: "flyers o logos",
+      text: "Piezas para eventos y redes, e identidad de marca completa." }
   ],
 
   /* ------------------------------------------------------------------

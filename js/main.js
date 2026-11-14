@@ -12,7 +12,7 @@
         barra de tiempo para adelantar / retroceder)
      5. Flyers (animado con sonido, comparador antes/después, galería,
         miniaturas de YouTube)
-     6. Branding (caso de estudio y logos)
+     6. Branding (caso de estudio y logos) + Servicios y WhatsApp
      7. Lightbox (ver imágenes en grande)
      8. Animaciones al hacer scroll
    ===================================================================== */
@@ -358,12 +358,26 @@
     }
   }
 
-  /* ---- 4.6 Dibujar la grilla de YouTube y los videos locales ---- */
-  (DATA.youtube || []).forEach((v) => {
-    const card = youtubeCard(v);
+  /* ---- 4.6 Dibujar la grilla de YouTube y los videos locales ----
+     Se muestran 4 al inicio; el resto aparece con "Ver más videos". */
+  const VISIBLE_VIDEOS = 4;
+  (DATA.youtube || []).forEach((v, i) => {
+    const card = youtubeCard(v, i >= VISIBLE_VIDEOS ? "is-extra" : "");
     $("#yt-grid").appendChild(card);
     bindYouTubeCard(card);
   });
+  const moreBtn = $("#yt-more");
+  const extras = $$("#yt-grid .is-extra");
+  if (moreBtn && extras.length) {
+    moreBtn.hidden = false;
+    moreBtn.textContent = `Ver más videos (${extras.length})`;
+    moreBtn.addEventListener("click", () => {
+      const open = $("#yt-grid").classList.toggle("show-all");
+      moreBtn.textContent = open ? "Ver menos" : `Ver más videos (${extras.length})`;
+      if (open) extras.forEach((c) => c.classList.add("is-visible"));
+      else $("#yt-grid").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  }
 
   // Videos propios (horizontales) y reels (verticales) desde data.js
   const localCard = (v, extraClass = "") => html(`
@@ -586,6 +600,31 @@
         <figcaption><strong>${logo.name}</strong><span>${logo.caption || ""}</span></figcaption>
       </figure>`));
   });
+
+  /* =================================================================
+     6.3 SERVICIOS + WhatsApp
+     ================================================================= */
+  const waLink = (what) =>
+    `https://wa.me/${DATA.whatsapp}?text=${encodeURIComponent(`Hola Federico, vi tu portafolio y quiero cotizar ${what}.`)}`;
+
+  (DATA.services || []).forEach((sv, i) =>
+    $("#service-grid").appendChild(html(`
+      <article class="service reveal">
+        <span class="service__num">0${i + 1}</span>
+        <h3 class="service__title">${esc(sv.title)}</h3>
+        <p class="service__text">${esc(sv.text)}</p>
+        <a class="service__cta" href="${waLink(sv.msg)}" target="_blank" rel="noopener">Cotizar <span aria-hidden="true">→</span></a>
+      </article>`))
+  );
+
+  // Botón flotante: aparece después de la portada y se oculta en Contacto
+  const waFloat = $("#wa-float");
+  if (waFloat) {
+    let pastHero = false, atContact = false;
+    const update = () => waFloat.classList.toggle("is-visible", pastHero && !atContact);
+    new IntersectionObserver(([en]) => { pastHero = !en.isIntersecting; update(); }).observe($(".hero"));
+    new IntersectionObserver(([en]) => { atContact = en.isIntersecting; update(); }, { threshold: 0.2 }).observe($("#contacto"));
+  }
 
   /* =================================================================
      7. LIGHTBOX: clic en cualquier elemento con data-zoom

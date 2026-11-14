@@ -30,7 +30,8 @@ publicado gratis en GitHub Pages. Se edita en VS Code y se previsualiza con la e
 5. Videos (`#videos`): YouTube con vista previa al pasar el cursor, "Color grading y motion design" (videos propios), Reels verticales y video destacado de fondo blanco. Todos tienen botón de sonido con barrita de volumen (se recuerda entre visitas) y barra de tiempo para adelantar / retroceder. En celular los reproductores de YouTube se preparan antes de tocarlos para que arranquen con un solo toque.
 6. Flyers (`#diseno`): animado grande (con sonido y barra de tiempo), comparador antes/después, galería y miniaturas para YouTube
 7. Branding (`#branding`): caso Los Perritos del Piti + logos
-8. Contacto (`#contacto`)
+8. Servicios (`#servicios`): tarjetas con botón "Cotizar" que abre WhatsApp con un mensaje ya escrito
+9. Contacto (`#contacto`) + botón flotante de WhatsApp
 
 ## Cómo agregar cosas
 
@@ -56,6 +57,11 @@ que se reproduce al pasar el cursor, sin anuncios. Sin preview, la miniatura sol
 
 **Una miniatura de YouTube:** guarda la imagen (1280×720) en `assets/thumbs/` y agrega en `thumbnails`:
 `{ title: "Nombre del video", src: "assets/thumbs/archivo.webp" }`
+
+**Un servicio:** en `data.js` → `services`:
+`{ title: "Nombre", msg: "lo que va en el mensaje de WhatsApp", text: "Descripción corta" }`
+
+**Cuántos videos de YouTube se ven al inicio:** en `main.js`, `VISIBLE_VIDEOS = 4`. El resto sale con "Ver más videos".
 
 **Un estudio:** en `index.html`, sección Educación, copia un `<li class="reveal">…</li>` completo.
 
