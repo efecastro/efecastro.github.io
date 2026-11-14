@@ -57,6 +57,16 @@ window.PORTFOLIO = {
   ],
 
   /* ------------------------------------------------------------------
+     2.2 REELS Y TIKTOKS (sección propia, debajo de los destacados)
+     ------------------------------------------------------------------ */
+  reels: [
+    { src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg",
+      title: "Make up 21 años", text: "Karen Giraldo · TikTok", vertical: true },
+    { src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg",
+      title: "FEM · Reel publicitario", text: "Karen Giraldo · TikTok", vertical: true }
+  ],
+
+  /* ------------------------------------------------------------------
      3. CLIENTES Y SUS VIDEOS (cada cliente es una fila que se despliega)
      Cada video puede ser:
        - de YouTube:  { yt: "ID" }   (ID = lo que va después de watch?v=)
@@ -94,13 +104,19 @@ window.PORTFOLIO = {
     ]},
     { name: "c.kickssVlog", about: "Vlogs de sneakers y emprendimiento", avatar: "assets/avatars/ckicks.webp", videos: [
       { yt: "vXFsQtfSjt4", title: "El día que hicimos más de $5,000 vendiendo sneakers" },
-      { yt: "ibprGbaymQs", title: "Montamos nuestra tienda en el mall más grande del Caribe" }
+      { yt: "ibprGbaymQs", title: "Montamos nuestra tienda en el mall más grande del Caribe" },
+      { yt: "ou-HuTf8jhY", title: "Así quedó nuestra nueva tienda de tenis" },
+      { yt: "gx_EV41KTic", title: "Hice $5,000 en un solo día vendiendo sneakers" },
+      { yt: "7ZWW91H1sn8", title: "Vendiendo tenis en SneakerCon · Día 1" },
+      { yt: "P6XpBVAuGrY", title: "Gasté miles de dólares comprando esta colección de tenis" }
     ]},
     { name: "Pelicanger", about: "Gaming y streams", avatar: "assets/avatars/pelicanger.webp", videos: [
       { yt: "VvJ3CB8Ldms", title: "Lo mejor de Pelicanger 2024" }
     ]},
     { name: "say_guz", about: "Streamers y entretenimiento", avatar: "assets/avatars/say-guz.webp", videos: [
-      { yt: "FdMZ-978Uks", title: "Calificando streamers con mis amigas" }
+      { yt: "FdMZ-978Uks", title: "Calificando streamers con mis amigas" },
+      { yt: "UUT25jMaNpk", title: "Reaccionando a las mascotas de seguidores" },
+      { yt: "rc9357pQH50", title: "Reaccionando a sus glow ups" }
     ]},
     { name: "LaJotadera", about: "Podcast de fútbol", avatar: "assets/avatars/lajotadera.webp", videos: [
       { yt: "fp6rIgDhjpE", title: "¡Campeones! Medellín FC destruyó La Copa Creadores" }
@@ -131,13 +147,16 @@ window.PORTFOLIO = {
   /* ------------------------------------------------------------------
      5. MINIATURAS PARA YOUTUBE (imágenes 16:9 en assets/thumbs)
      ------------------------------------------------------------------ */
+  // stack = varias miniaturas apiladas (como fotos acumuladas); al tocar se despliegan todas
   thumbnails: [
-    { title: "Squid Games Colombia · Día 1", src: "assets/thumbs/squid-games-dia-1.webp" },
-    { title: "Squid Games Colombia · Día 2", src: "assets/thumbs/squid-games-dia-2.webp" },
-    { title: "Squid Games Colombia · Día 3", src: "assets/thumbs/squid-games-dia-3.webp" },
-    { title: "Squid Games Colombia · Día 4", src: "assets/thumbs/squid-games-dia-4.webp" },
-    { title: "Squid Games Colombia · Final", src: "assets/thumbs/squid-games-final.webp" },
-    { title: "GTA San Andreas Colombia",     src: "assets/thumbs/gta-san-andreas-colombia.webp" }
+    { title: "Squid Games Colombia", note: "Serie completa · El Muñetones", stack: [
+      { title: "Día 1", src: "assets/thumbs/squid-games-dia-1.webp" },
+      { title: "Día 2", src: "assets/thumbs/squid-games-dia-2.webp" },
+      { title: "Día 3", src: "assets/thumbs/squid-games-dia-3.webp" },
+      { title: "Día 4", src: "assets/thumbs/squid-games-dia-4.webp" },
+      { title: "Final", src: "assets/thumbs/squid-games-final.webp" }
+    ]},
+    { title: "GTA San Andreas Colombia", src: "assets/thumbs/gta-san-andreas-colombia.webp" }
   ],
 
   /* ------------------------------------------------------------------

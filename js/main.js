@@ -328,6 +328,13 @@ addEventListener("error", () => document.documentElement.classList.remove("js"))
     $("#highlights").appendChild(card);
   });
 
+  /* ---- 4.2b Reels y TikToks (sección propia) ---- */
+  (DATA.reels || []).forEach((v) => {
+    const card = videoCard(v, "reveal");
+    if (v.text) $(".vcard__info", card).insertAdjacentHTML("beforeend", `<p>${esc(v.text)}</p>`);
+    $("#reels").appendChild(card);
+  });
+
   /* ---- 4.3 Clientes desplegables ---- */
   const thumbOf = (v) => v.yt ? `https://i.ytimg.com/vi/${v.yt}/mqdefault.jpg` : v.poster;
   clients.forEach((c, i) => {
@@ -457,13 +464,51 @@ addEventListener("error", () => document.documentElement.classList.remove("js"))
     $("#flyer-track").appendChild(slide);
   });
 
-  /* ---- 5.4 Miniaturas ---- */
-  (DATA.thumbnails || []).forEach((t) =>
-    $("#thumb-grid").appendChild(html(`
-      <figure class="thumb reveal" data-zoom="${t.src}">
-        <img src="${t.src}" alt="Miniatura ${esc(t.title)}" loading="lazy" />
-        <figcaption>${esc(t.title)}</figcaption>
+  /* ---- 5.4 Miniaturas ----
+     Las que tienen "stack" salen apiladas (como fotos acumuladas).
+     Al tocar la pila se despliegan todas debajo. */
+  const stackPanel = $("#stack-panel");
+  (DATA.thumbnails || []).forEach((t) => {
+    if (!t.stack) {
+      $("#thumb-grid").appendChild(html(`
+        <figure class="thumb reveal" data-zoom="${t.src}">
+          <img src="${t.src}" alt="Miniatura ${esc(t.title)}" loading="lazy" />
+          <figcaption>${esc(t.title)}</figcaption>
+        </figure>`));
+      return;
+    }
+    const layers = t.stack.slice(0, 3).reverse(); // la primera queda encima
+    const el = html(`
+      <figure class="thumb thumb--stack reveal">
+        <button class="stack" aria-expanded="false" aria-controls="stack-panel">
+          ${layers.map((it, i) => `<img class="stack__card stack__card--${layers.length - 1 - i}" src="${it.src}" alt="" loading="lazy" />`).join("")}
+          <span class="stack__count">${t.stack.length}</span>
+        </button>
+        <figcaption>
+          <span>${esc(t.title)}<small>${esc(t.note || "")}</small></span>
+          <em class="stack__hint">Ver las ${t.stack.length} <i aria-hidden="true"></i></em>
+        </figcaption>
+      </figure>`);
+    t.stack.forEach((it) => $("#stack-grid").appendChild(html(`
+      <figure class="thumb" data-zoom="${it.src}">
+        <img src="${it.src}" alt="Miniatura ${esc(t.title)} ${esc(it.title)}" loading="lazy" />
+        <figcaption>${esc(it.title)}</figcaption>
       </figure>`)));
+    const btn = $(".stack", el);
+    const toggle = () => {
+      const open = !el.classList.contains("is-open");
+      el.classList.toggle("is-open", open);
+      stackPanel.classList.toggle("is-open", open);
+      btn.setAttribute("aria-expanded", open);
+      $(".stack__hint", el).firstChild.textContent = open ? "Cerrar " : `Ver las ${t.stack.length} `;
+    };
+    btn.addEventListener("click", toggle);
+    $(".stack__hint", el).addEventListener("click", toggle);
+    $("#thumb-grid").appendChild(el);
+  });
+  // El panel va dentro de la fila: en computador sale debajo de todas,
+  // en celular justo debajo de la pila (ver CSS "order")
+  if (stackPanel) $("#thumb-grid").appendChild(stackPanel);
 
   /* =================================================================
      6. BRANDING
