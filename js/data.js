@@ -1,122 +1,112 @@
 /* =====================================================================
-   DATOS DEL PORTAFOLIO  ·  Federico Castro
+   DATOS DEL PORTAFOLIO  ·  Federico Castro (@efecastrooo)
    ---------------------------------------------------------------------
-   Aquí está TODO el contenido que cambia seguido: skills, videos,
-   flyers y logos. Para agregar algo nuevo, copia un bloque { ... },
-   pégalo debajo (separado por una coma) y cambia los datos.
+   Aquí está TODO el contenido: cifras, skills, clientes y sus videos,
+   flyers, miniaturas, logos y servicios. Para agregar algo, copia un
+   bloque { ... }, pégalo debajo (separado por coma) y cambia los datos.
 
-   Las imágenes van en la carpeta assets/ y se escriben con su ruta,
+   Las imágenes y videos van en assets/ y se escriben con su ruta,
    por ejemplo: "assets/flyers/mi-flyer.webp"
    ===================================================================== */
 
 window.PORTFOLIO = {
 
   /* ------------------------------------------------------------------
-     1. SKILLS
-     level: de 0 a 5 estrellas (se permiten medias: 4.5)
+     1. SKILLS · level de 0 a 5 estrellas (se permiten medias: 4.5)
      badge: letras del icono · color: color de las letras · bg: fondo
      ------------------------------------------------------------------ */
   skills: {
     creative: [
-      { name: "Premiere Pro",  badge: "Pr", color: "#9999ff", bg: "#00005b", level: 5,   note: "Edición, ritmo, multicámara" },
-      { name: "After Effects", badge: "Ae", color: "#9999ff", bg: "#00005b", level: 3,   note: "Motion graphics, tracking, VFX" },
-      { name: "CapCut Pro",    badge: "Cc", color: "#ffffff", bg: "#161616", level: 5,   note: "Contenido vertical y reels" },
-      { name: "Photoshop",     badge: "Ps", color: "#31a8ff", bg: "#001e36", level: 4, note: "Flyers, retoque, composición" },
-      { name: "Illustrator",   badge: "Ai", color: "#ff9a00", bg: "#330000", level: 3,   note: "Logos e identidad de marca" },
-      { name: "Lightroom",     badge: "Lr", color: "#31a8ff", bg: "#001e36", level: 5,   note: "Color y revelado de foto" }
+      { name: "Premiere Pro",  badge: "Pr", color: "#9999ff", bg: "#00005b", level: 5 },
+      { name: "After Effects", badge: "Ae", color: "#9999ff", bg: "#00005b", level: 3 },
+      { name: "CapCut Pro",    badge: "Cc", color: "#ffffff", bg: "#161616", level: 5 },
+      { name: "Photoshop",     badge: "Ps", color: "#31a8ff", bg: "#001e36", level: 4 },
+      { name: "Illustrator",   badge: "Ai", color: "#ff9a00", bg: "#330000", level: 3 },
+      { name: "Lightroom",     badge: "Lr", color: "#31a8ff", bg: "#001e36", level: 5 }
     ],
     code: [
-      { name: "Python",               badge: "Py",  color: "#ffd43b", bg: "#14304f", level: 4,   note: "Scripts, lógica, automatización" },
-      { name: "C#",                   badge: "C#",  color: "#d9a7ff", bg: "#2b0f3a", level: 5, note: "Aplicaciones y POO" },
-      { name: "Java",                 badge: "Jv",  color: "#f89820", bg: "#2a1406", level: 2, note: "Bases y Android Studio" },
-      { name: "HTML & CSS",           badge: "</>", color: "#ff7a45", bg: "#2a0f05", level: 4,   note: "Sitios web y maquetación" },
-      { name: "Bases de datos",       badge: "DB",  color: "#4fd1c5", bg: "#062a2a", level: 4, note: "SQL y MySQL" },
-      { name: "Servicios en la nube", badge: "☁",   color: "#8ec5ff", bg: "#0a1e33", level: 3,   note: "Despliegue y servicios cloud" }
+      { name: "Python",               badge: "Py",  color: "#ffd43b", bg: "#14304f", level: 4 },
+      { name: "C#",                   badge: "C#",  color: "#d9a7ff", bg: "#2b0f3a", level: 5 },
+      { name: "Java",                 badge: "Jv",  color: "#f89820", bg: "#2a1406", level: 2 },
+      { name: "HTML & CSS",           badge: "</>", color: "#ff7a45", bg: "#2a0f05", level: 4 },
+      { name: "SQL y MySQL",          badge: "DB",  color: "#4fd1c5", bg: "#062a2a", level: 4 },
+      { name: "Servicios en la nube", badge: "☁",   color: "#8ec5ff", bg: "#0a1e33", level: 3 }
     ]
   },
 
   /* ------------------------------------------------------------------
-     2. VIDEOS DE YOUTUBE (se reproducen al pasar el cursor)
-     id: lo que va después de "watch?v=" en el enlace
-     start: segundo en que empieza la vista previa
-     title: se usa solo si no se puede leer el título real de YouTube
-     preview (opcional): clip corto propio para la vista previa al pasar el
-              cursor, ej. "assets/previews/mi-video.mp4". Si no lo pones,
-              la miniatura solo se anima. Al hacer clic siempre se abre el
-              reproductor de YouTube con sonido.
+     2. VIDEO DESTACADO (fondo blanco), arriba de los clientes
+     views: escríbelas como quieres que se vean ("25 K"). Vacío = no sale.
      ------------------------------------------------------------------ */
-  youtube: [
-    { id: "vXFsQtfSjt4", start: 0, title: "Proyecto de edición 01", tag: "Edición" },
-    { id: "ibprGbaymQs", start: 0, title: "Proyecto de edición 02", tag: "Edición" },
-    { id: "ukBh2uggr-k", start: 0, title: "Proyecto de edición 03", tag: "Edición" },
-    { id: "KK1nc_PxGos", start: 0, title: "Proyecto de edición 04", tag: "Edición" },
-    { id: "3-H3vd8yy_s", start: 0, title: "Proyecto de edición 05", tag: "Edición" },
-    { id: "VvJ3CB8Ldms", start: 0, title: "Proyecto de edición 06", tag: "Edición" },
-    { id: "FdMZ-978Uks", start: 0, title: "Proyecto de edición 07", tag: "Edición" },
-    { id: "fp6rIgDhjpE", start: 0, title: "Proyecto de edición 08", tag: "Edición" }
-  ],
-
-  /* Video especial (fondo blanco), en grande al final de la sección.
-     views: escríbelas como quieres que se vean ("25 K", "1,2 M").
-            Si lo dejas vacío (""), no aparece la etiqueta de vistas.  */
   featured: {
     id: "fNx1N6XFDZk",
     start: 0,
-    title: "Video de fondo blanco",
-    views: "",
-    tag: "Fondo blanco"
+    client: "Andresosky",
+    title: "Adivina la streamer 2",
+    views: ""
   },
 
   /* ------------------------------------------------------------------
-     2.1 VIDEOS PROPIOS (archivos en assets/video)
-     Sección "Color grading y motion design". Se ven horizontales.
-     src: el video .mp4 · poster: imagen que se ve antes de reproducir
+     3. CLIENTES Y SUS VIDEOS (cada cliente es una fila que se despliega)
+     Cada video puede ser:
+       - de YouTube:  { yt: "ID" }   (ID = lo que va después de watch?v=)
+         opcional:    preview: "assets/previews/clip.mp4" (vista previa sin anuncios)
+       - propio:      { src: "assets/video/x.mp4", poster: "assets/video/x.jpg",
+                        title: "Nombre", vertical: true }   (vertical = reel 9:16)
+     Para agregar un cliente nuevo, copia un bloque completo { name: ... }.
      ------------------------------------------------------------------ */
-  localVideos: [
-    { title: "Corrección de color · LOG → REC", text: "Comparativa OFF / ON del etalonaje y efectos.", tag: "Color grading",
-      src: "assets/video/color-grading.mp4", poster: "assets/video/color-grading.jpg" },
-    { title: "Intro para vlog", text: "Animación de títulos, ritmo y transiciones.", tag: "Motion",
-      src: "assets/video/intro-vlog.mp4", poster: "assets/video/intro-vlog.jpg" }
+  clients: [
+    { name: "c.kickssVlog", about: "Vlogs de sneakers y emprendimiento", videos: [
+      { yt: "vXFsQtfSjt4", title: "El día que hicimos más de $5,000 vendiendo sneakers" },
+      { yt: "ibprGbaymQs", title: "Montamos nuestra tienda en el mall más grande del Caribe" }
+    ]},
+    { name: "Andresosky", about: "Entretenimiento y reacciones", videos: [
+      { yt: "ukBh2uggr-k", title: "El violín caso real · La Rosa de Guadalupe" },
+      { yt: "KK1nc_PxGos", title: "El episodio más PDF de La Rosa" }
+    ]},
+    { name: "LaJotadera", about: "Fútbol y creadores", videos: [
+      { yt: "fp6rIgDhjpE", title: "¡Campeones! Medellín FC destruyó La Copa Creadores" }
+    ]},
+    { name: "Pelicanger", about: "Gaming y streams", videos: [
+      { yt: "VvJ3CB8Ldms", title: "Lo mejor de Pelicanger 2024" }
+    ]},
+    { name: "say_guz", about: "Streamers y entretenimiento", videos: [
+      { yt: "FdMZ-978Uks", title: "Calificando streamers con mis amigas" }
+    ]},
+    { name: "El Muñetones", about: "Gaming", videos: [
+      { yt: "3-H3vd8yy_s", title: "Locura de partidas en Hell Let Loose" }
+    ]},
+    { name: "Karen Giraldo", about: "Reel publicitario · FEM", videos: [
+      { src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg",
+        title: "FEM · Reel publicitario", vertical: true }
+    ]},
+    { name: "Color, motion y reels", own: true, about: "Corrección de color, intros y contenido vertical", videos: [
+      { src: "assets/video/color-grading.mp4", poster: "assets/video/color-grading.jpg",
+        title: "Corrección de color · LOG → REC" },
+      { src: "assets/video/intro-vlog.mp4", poster: "assets/video/intro-vlog.jpg",
+        title: "Intro para vlog" },
+      { src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg",
+        title: "Make up 21 años · TikTok", vertical: true }
+    ]}
   ],
 
   /* ------------------------------------------------------------------
-     2.2 REELS VERTICALES (TikTok / Instagram / Shorts)
-     Mismo formato que arriba, pero se muestran verticales (9:16).
+     4. FLYERS (carrusel)
+     - animado:  { title, video, poster }
+     - antes/después: { title, before, after }
+     - normal:   { title, src }
      ------------------------------------------------------------------ */
-  reels: [
-    { title: "Make up 21 años", text: "Reel para TikTok: subtítulos dinámicos, inserts y ritmo vertical.", tag: "TikTok",
-      src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg" },
-    { title: "FEM · Karen Giraldo", text: "Reel publicitario: subtítulos dinámicos y cortes al ritmo del mensaje.", tag: "Publicidad",
-      src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg" }
+  flyers: [
+    { title: "Halloween",            video: "assets/video/flyer-halloween.mp4", poster: "assets/flyers/halloween-base.webp" },
+    { title: "Simulacro Decembrino", before: "assets/flyers/simulacro-antes.webp",   after: "assets/flyers/simulacro.webp" },
+    { title: "San Valentín",         before: "assets/flyers/san-valentin-antes.webp", after: "assets/flyers/san-valentin.webp" },
+    { title: "Bienvenida Diciembre", src: "assets/flyers/diciembre.webp" },
+    { title: "Día de la Mujer",      src: "assets/flyers/dia-mujer.webp" },
+    { title: "Special Birthday",     src: "assets/flyers/special-birthday.webp" }
   ],
 
   /* ------------------------------------------------------------------
-     3. FLYERS
-     ------------------------------------------------------------------ */
-  flyers: {
-    // Flyer animado: va grande y centrado arriba (con botón de sonido)
-    animated: {
-      title: "Halloween",
-      video: "assets/video/flyer-halloween.mp4",
-      poster: "assets/flyers/halloween-base.webp"
-    },
-
-    // Comparador con línea deslizable: before = sin editar, after = editado
-    compare: [
-      { title: "Simulacro Decembrino", before: "assets/flyers/simulacro-antes.webp",   after: "assets/flyers/simulacro.webp" },
-      { title: "San Valentín",         before: "assets/flyers/san-valentin-antes.webp", after: "assets/flyers/san-valentin.webp" }
-    ],
-
-    // Galería normal en cuadrícula
-    gallery: [
-      { title: "Bienvenida Diciembre", src: "assets/flyers/diciembre.webp" },
-      { title: "Día de la Mujer",      src: "assets/flyers/dia-mujer.webp" },
-      { title: "Special Birthday",     src: "assets/flyers/special-birthday.webp" }
-    ]
-  },
-
-  /* ------------------------------------------------------------------
-     3.1 MINIATURAS PARA YOUTUBE (imágenes 16:9 en assets/thumbs)
+     5. MINIATURAS PARA YOUTUBE (imágenes 16:9 en assets/thumbs)
      ------------------------------------------------------------------ */
   thumbnails: [
     { title: "Squid Games Colombia · Día 1", src: "assets/thumbs/squid-games-dia-1.webp" },
@@ -125,28 +115,24 @@ window.PORTFOLIO = {
   ],
 
   /* ------------------------------------------------------------------
-     5. SERVICIOS (cada uno tiene botón "Cotizar" por WhatsApp)
-     msg: lo que aparece en el mensaje de WhatsApp ("quiero cotizar ...")
+     6. LOGOS · una tarjeta por marca; tocar = siguiente variación
+     bg: color de fondo · dark: true si el fondo es oscuro
      ------------------------------------------------------------------ */
-  whatsapp: "573116784485",
-  services: [
-    { title: "Reels y TikToks",     msg: "edición de reels / TikToks",
-      text: "Edición vertical con ritmo, subtítulos dinámicos, efectos y música para que la gente vea hasta el final." },
-    { title: "Videos para YouTube", msg: "edición de videos para YouTube",
-      text: "Edición completa: cortes, color, sonido y motion graphics para que tu video se sienta pro." },
-    { title: "Miniaturas",          msg: "miniaturas para YouTube",
-      text: "Miniaturas llamativas y claras que invitan al clic." },
-    { title: "Flyers y logos",      msg: "flyers o logos",
-      text: "Piezas para eventos y redes, e identidad de marca completa." }
+  logos: [
+    { name: "Adonay", caption: "Fonda Bar", bg: "#f5efe3",
+      images: ["assets/logos/adonay-fonda.webp", "assets/logos/adonay-bar.webp"] },
+    { name: "Brasa Negra", caption: "Restaurante", bg: "#0e0d10", dark: true,
+      images: ["assets/logos/brasa-negra-rojo.webp", "assets/logos/brasa-negra-blanco.webp"] },
+    { name: "MD Lash Studio", caption: "Estudio de pestañas", bg: "#fbf1f6",
+      images: ["assets/logos/md-lash-rosa.webp", "assets/logos/md-lash-negro.webp", "assets/logos/md-lash-sticker.webp"] },
+    { name: "Mandipalmas", caption: "Mascota", bg: "#fff3e4",
+      images: ["assets/logos/mandipalmas.webp"] }
   ],
 
-  /* ------------------------------------------------------------------
-     4. BRANDING
-     ------------------------------------------------------------------ */
   // Caso de estudio con carrusel de páginas
   brandCase: {
     title: "Los Perritos del Piti",
-    text: "Manual de marca completo: concepto (frescura, flow urbano, sabor de hogar), logotipo, variaciones, ilustración del personaje, área de respeto, aplicaciones y menú.",
+    text: "Concepto (frescura, flow urbano, sabor de hogar), logotipo, variaciones, personaje, área de respeto, aplicaciones y menú.",
     pages: [
       "assets/logos/perritos-01.webp",
       "assets/logos/perritos-04.webp",
@@ -159,16 +145,19 @@ window.PORTFOLIO = {
     ]
   },
 
-  // Tarjetas de logos. Si pones varias imágenes, salen una al lado de la otra.
-  // bg: color de fondo de la tarjeta
-  logos: [
-    { name: "Adonay",         caption: "Fonda Bar · Variaciones", bg: "#f5efe3",
-      images: ["assets/logos/adonay-fonda.webp", "assets/logos/adonay-bar.webp"] },
-    { name: "Brasa Negra",    caption: "Color · Monocromo",       bg: "#0d0c0f",
-      images: ["assets/logos/brasa-negra-rojo.webp", "assets/logos/brasa-negra-blanco.webp"] },
-    { name: "Mandipalmas",    caption: "Mascota",                 bg: "#8f8794",
-      images: ["assets/logos/mandipalmas.webp"] },
-    { name: "MD Lash Studio", caption: "Variaciones",             bg: "#8f8794",
-      images: ["assets/logos/md-lash-studio.webp"] }
+  /* ------------------------------------------------------------------
+     7. SERVICIOS (cada uno con botón "Cotizar" por WhatsApp)
+     msg: lo que aparece en el mensaje ("quiero cotizar ...")
+     ------------------------------------------------------------------ */
+  whatsapp: "573116784485",
+  services: [
+    { title: "Reels y TikToks",     msg: "edición de reels / TikToks",
+      text: "Edición vertical con ritmo, subtítulos dinámicos, efectos y música para que la gente vea hasta el final." },
+    { title: "Videos para YouTube", msg: "edición de videos para YouTube",
+      text: "Edición completa: cortes, color, sonido y motion graphics para que tu video se sienta pro." },
+    { title: "Miniaturas",          msg: "miniaturas para YouTube",
+      text: "Miniaturas llamativas y claras que invitan al clic." },
+    { title: "Flyers y logos",      msg: "flyers o logos",
+      text: "Piezas para eventos y redes, e identidad de marca completa." }
   ]
 };

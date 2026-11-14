@@ -27,8 +27,8 @@
   <header class="nav" id="nav">
     <a href="#inicio" class="nav__logo" aria-label="Inicio">FC<span>.</span></a>
     <nav class="nav__links" aria-label="Secciones">
-      <a href="#skills">Skills</a>
-      <a href="#videos">Videos</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#trabajos">Trabajos</a>
       <a href="#diseno">Diseño</a>
       <a href="#servicios">Servicios</a>
       <a href="#contacto" class="nav__cta">Contacto</a>
@@ -55,7 +55,7 @@
         </h1>
         <p class="hero__role">Editor de video <i>·</i> Diseño gráfico <i>·</i> Desarrollo web</p>
         <div class="hero__actions">
-          <a href="#videos" class="btn btn--primary">Ver trabajos</a>
+          <a href="#trabajos" class="btn btn--primary">Ver trabajos</a>
           <a href="#contacto" class="btn btn--ghost">Hablemos</a>
         </div>
       </div>
@@ -65,175 +65,121 @@
       </a>
     </section>
 
-    <!-- ============ SOBRE MÍ ============ -->
-    <section class="about section" id="sobre-mi">
-      <div class="about__text reveal">
-        <p class="eyebrow"><span class="clip">V0</span> Sobre mí</p>
-        <h2 class="h2">Cuento historias con cortes, color y diseño.</h2>
-        <p class="lead">
-          Soy Federico Castro, editor de video y diseñador gráfico. Me encargo de que cada pieza
-          tenga ritmo, buen color y un mensaje claro: desde videos para YouTube y reels,
-          hasta flyers de eventos e identidades de marca completas.
-        </p>
-        <p class="muted">
-          También vengo del mundo de la programación: me formé en el SENA en desarrollo de
-          aplicaciones y servicios para la nube, así que entiendo tanto la parte creativa como la técnica.
-        </p>
-        <ul class="about__facts">
-          <li><strong>Video</strong><span>YouTube, reels, color, motion</span></li>
-          <li><strong>Diseño</strong><span>Flyers, logos, manuales de marca</span></li>
-          <li><strong>Web</strong><span>Sitios, Python, bases de datos, nube</span></li>
-        </ul>
-      </div>
-      <figure class="about__photo reveal">
-        <img src="assets/img/about.webp" alt="Federico Castro sentado en una Vespa de noche" loading="lazy" width="740" height="1080" />
-      </figure>
-    </section>
-
 
     <!-- =================================================================
-         SKILLS  ·  las tarjetas se generan desde js/data.js → skills
+         1. SOBRE MÍ  ·  bio + skills + educación en una sola sección
          ================================================================= -->
-    <section class="section" id="skills">
-      <div class="section__head reveal">
-        <p class="eyebrow"><span class="clip clip--audio">A1</span> Habilidades</p>
-        <h2 class="h2">Skills</h2>
+    <section class="section" id="sobre-mi">
+      <div class="about">
+        <div class="about__text reveal">
+          <p class="eyebrow"><span class="clip">V0</span> Sobre mí</p>
+          <h2 class="h2">Cuento historias con cortes, color y diseño.</h2>
+          <p class="lead">
+            Soy Federico Castro, editor de video y diseñador gráfico. Hago que cada pieza tenga ritmo,
+            buen color y un mensaje claro: videos para YouTube, reels y TikToks, flyers e identidades de marca.
+          </p>
+          <p class="muted">
+            También soy programador, formado en el SENA en aplicaciones y servicios para la nube:
+            entiendo tanto la parte creativa como la técnica.
+          </p>
+        </div>
+        <figure class="about__photo reveal">
+          <img src="assets/img/about.webp" alt="Federico Castro sentado en una Vespa de noche" loading="lazy" width="740" height="1080" />
+        </figure>
       </div>
 
-      <h3 class="group-title reveal">Edición y diseño</h3>
-      <div class="skill-grid" id="skills-creative"></div>
-
-      <h3 class="group-title reveal">Programación y desarrollo web</h3>
-      <div class="skill-grid" id="skills-code"></div>
-
-      <div class="soft reveal">
-        <div>
-          <h4>Idiomas</h4>
-          <p>Español <span class="muted">· Nativo</span><br />Inglés <span class="muted">· Intermedio</span></p>
+      <!-- Skills -->
+      <div class="skills reveal">
+        <div class="panel">
+          <h3 class="panel__title">Edición y diseño</h3>
+          <ul class="skill-list" id="skills-creative"></ul>
         </div>
-        <div>
-          <h4>Además</h4>
-          <p>Trabajo en equipo · Comunicación asertiva · Mercadeo y ventas · Atención al cliente</p>
+        <div class="panel">
+          <h3 class="panel__title">Programación y web</h3>
+          <ul class="skill-list" id="skills-code"></ul>
         </div>
       </div>
-    </section>
 
-    <!-- =================================================================
-         EDUCACIÓN  ·  para agregar un estudio, copia un <li> completo
-         ================================================================= -->
-    <section class="section" id="educacion">
-      <div class="section__head reveal">
-        <p class="eyebrow"><span class="clip clip--audio">A2</span> Formación</p>
-        <h2 class="h2">Educación</h2>
+      <!-- Educación + extras -->
+      <div class="edu reveal">
+        <div class="panel panel--wide">
+          <h3 class="panel__title">Educación</h3>
+          <ol class="edu-list">
+            <li><span>2022 — 2024</span><div><strong>Programación de aplicaciones y servicios para la nube</strong><em>SENA</em></div></li>
+            <li><span>2019 — 2021</span><div><strong>Mercadeo y ventas</strong><em>Centro de Formación Integral para el Trabajo</em></div></li>
+            <li><span>2009 — 2021</span><div><strong>Bachiller · Primaria y secundaria</strong><em>Institución Educativa Las Palmas · Graduado en 2021</em></div></li>
+          </ol>
+        </div>
+        <div class="panel">
+          <h3 class="panel__title">Idiomas</h3>
+          <p class="panel__text">Español <span class="muted">· Nativo</span><br />Inglés <span class="muted">· Intermedio</span></p>
+          <h3 class="panel__title panel__title--gap">Además</h3>
+          <div class="chips"><span>Trabajo en equipo</span><span>Comunicación asertiva</span><span>Mercadeo y ventas</span><span>Atención al cliente</span></div>
+        </div>
       </div>
-      <ol class="timeline">
-        <li class="reveal">
-          <span class="timeline__year">2022 — 2024</span>
-          <h4>Programación de aplicaciones y servicios para la nube</h4>
-          <p>Servicio Nacional de Aprendizaje — SENA</p>
-        </li>
-        <li class="reveal">
-          <span class="timeline__year">2019 — 2021</span>
-          <h4>Mercadeo y ventas</h4>
-          <p>Centro de Formación Integral para el Trabajo</p>
-        </li>
-        <li class="reveal">
-          <span class="timeline__year">2009 — 2021</span>
-          <h4>Bachiller · Primaria y secundaria</h4>
-          <p>Institución Educativa Las Palmas · Primaria, y secundaria de 6° a 11°. Graduado en 2021</p>
-        </li>
-      </ol>
     </section>
 
     <!-- =================================================================
-         VIDEOS  ·  YouTube y destacado se generan desde js/data.js
+         2. TRABAJOS  ·  video destacado + videos agrupados por cliente
+            (todo se genera desde js/data.js → featured y clients)
          ================================================================= -->
-    <section class="section" id="videos">
+    <section class="section" id="trabajos">
       <div class="section__head reveal">
         <p class="eyebrow"><span class="clip">V1</span> Edición de video</p>
-        <h2 class="h2">Videos</h2>
-        <p class="muted">Haz clic en un video para reproducirlo con sonido. En los videos propios y reels, pasa el cursor para ver la vista previa y activa el sonido con <span class="kbd">🔊</span>.</p>
+        <h2 class="h2">Trabajos</h2>
+        <p class="muted">Elige un cliente para ver sus videos. Clic para reproducir con sonido.</p>
       </div>
-
-      <div class="video-grid" id="yt-grid"><!-- generado por main.js --></div>
-      <div class="more-wrap"><button class="btn btn--ghost" id="yt-more" hidden>Ver más videos</button></div>
-
-      <!-- Color grading + intro (videos alojados en el sitio) -->
-      <div class="section__head section__head--sub reveal">
-        <p class="eyebrow">Color &amp; motion</p>
-        <h3 class="h3">Color grading y motion design</h3>
-      </div>
-      <div class="local-grid" id="local-grid"><!-- generado desde js/data.js → localVideos --></div>
-
-      <!-- Reels verticales -->
-      <div class="section__head section__head--sub reveal">
-        <p class="eyebrow">Contenido vertical</p>
-        <h3 class="h3">Reels</h3>
-      </div>
-      <div class="reel-grid" id="reel-grid"><!-- generado desde js/data.js → reels --></div>
-
-      <!-- Video especial -->
-      <div class="featured reveal" id="featured"><!-- generado por main.js --></div>
+      <div class="featured reveal" id="featured"></div>
+      <div class="clients" id="clients"></div>
     </section>
 
     <!-- =================================================================
-         FLYERS  ·  se generan desde js/data.js → flyers
+         3. DISEÑO  ·  flyers (carrusel) + miniaturas + branding
          ================================================================= -->
     <section class="section" id="diseno">
-      <div class="section__head reveal">
-        <p class="eyebrow"><span class="clip">V2</span> Diseño gráfico</p>
-        <h2 class="h2">Flyers</h2>
+      <div class="section__head section__head--row reveal">
+        <div>
+          <p class="eyebrow"><span class="clip">V2</span> Diseño gráfico</p>
+          <h2 class="h2">Flyers</h2>
+          <p class="muted">En los marcados <b>Antes / Después</b>, mueve la línea para comparar.</p>
+        </div>
+        <div class="arrows">
+          <button class="icon-btn" data-scroll="#flyer-track" data-dir="-1" aria-label="Anterior">←</button>
+          <button class="icon-btn" data-scroll="#flyer-track" data-dir="1" aria-label="Siguiente">→</button>
+        </div>
       </div>
+      <div class="carousel" id="flyer-track"></div>
 
-      <!-- Flyer animado, grande y centrado -->
-      <div class="flyer-feature reveal" id="flyer-animated"></div>
-
-      <!-- Antes / después con línea deslizable -->
       <div class="section__head section__head--sub reveal">
-        <p class="eyebrow">Antes / Después</p>
-        <p class="muted">Mueve el cursor sobre el flyer (o arrastra con el dedo) para comparar la foto sin editar con el resultado final.</p>
+        <p class="eyebrow">Miniaturas para YouTube</p>
       </div>
-      <div class="compare-grid" id="flyer-compare"></div>
-
-      <!-- Galería -->
-      <div class="flyer-grid" id="flyer-gallery"></div>
-
-      <!-- Miniaturas de YouTube -->
-      <div class="section__head section__head--sub reveal">
-        <p class="eyebrow">Miniaturas</p>
-        <h3 class="h3">Miniaturas para YouTube</h3>
-      </div>
-      <div class="thumb-grid" id="thumb-grid"><!-- generado desde js/data.js → thumbnails --></div>
+      <div class="thumb-grid" id="thumb-grid"></div>
     </section>
 
-    <!-- =================================================================
-         BRANDING  ·  se genera desde js/data.js → brandCase y logos
-         ================================================================= -->
     <section class="section" id="branding">
       <div class="section__head reveal">
         <p class="eyebrow"><span class="clip">V3</span> Identidad de marca</p>
         <h2 class="h2">Logos &amp; branding</h2>
+        <p class="muted">Toca un logo para ver sus variaciones.</p>
       </div>
+      <div class="brand-grid" id="logo-grid"></div>
 
       <article class="case reveal" id="brand-case">
         <div class="case__intro">
-          <span class="case__label">Caso de estudio</span>
+          <span class="case__label">Caso de estudio · Manual de marca</span>
           <h3 class="h3" data-case-title></h3>
           <p class="muted" data-case-text></p>
-          <div class="case__nav">
-            <button class="icon-btn" data-case-prev aria-label="Anterior">←</button>
-            <button class="icon-btn" data-case-next aria-label="Siguiente">→</button>
+          <div class="arrows">
+            <button class="icon-btn" data-scroll="#case-track" data-dir="-1" aria-label="Anterior">←</button>
+            <button class="icon-btn" data-scroll="#case-track" data-dir="1" aria-label="Siguiente">→</button>
           </div>
         </div>
         <div class="case__track" id="case-track"></div>
       </article>
-
-      <div class="logo-grid" id="logo-grid"></div>
     </section>
 
-    <!-- ============ CONTACTO ============ -->
     <!-- =================================================================
-         SERVICIOS  ·  se genera desde js/data.js → services
+         4. SERVICIOS  ·  se genera desde js/data.js → services
          ================================================================= -->
     <section class="section" id="servicios">
       <div class="section__head reveal">
