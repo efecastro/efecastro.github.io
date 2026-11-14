@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/img/hero.webp" />
-  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/styles.css?v=20261113b" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -27,9 +27,9 @@
   <header class="nav" id="nav">
     <a href="#inicio" class="nav__logo" aria-label="Inicio">FC<span>.</span></a>
     <nav class="nav__links" aria-label="Secciones">
-      <a href="#sobre-mi">Sobre mí</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#diseno">Diseño</a>
+      <a href="#sobre-mi">Sobre mí</a>
       <a href="#servicios">Servicios</a>
       <a href="#contacto" class="nav__cta">Contacto</a>
     </nav>
@@ -60,19 +60,78 @@
         </div>
       </div>
 
-      <a href="#sobre-mi" class="hero__scroll" aria-label="Bajar">
+      <a href="#trabajos" class="hero__scroll" aria-label="Bajar">
         <span></span>
       </a>
     </section>
 
 
     <!-- =================================================================
-         1. SOBRE MÍ  ·  bio + skills + educación en una sola sección
+         1. TRABAJOS  ·  video destacado + videos agrupados por cliente
+            (todo se genera desde js/data.js → featured y clients)
+         ================================================================= -->
+    <section class="section" id="trabajos">
+      <div class="section__head reveal">
+        <p class="eyebrow"><span class="clip">V1</span> Edición de video</p>
+        <h2 class="h2">Trabajos</h2>
+        <p class="muted">Toca un video para reproducirlo con sonido. Abajo, mis clientes: elige uno para ver sus videos.</p>
+      </div>
+      <div class="featured reveal" id="featured"></div>
+      <div class="clients" id="clients"></div>
+    </section>
+
+    <!-- =================================================================
+         2. DISEÑO  ·  flyers (carrusel) + miniaturas + branding
+         ================================================================= -->
+    <section class="section" id="diseno">
+      <div class="section__head section__head--row reveal">
+        <div>
+          <p class="eyebrow"><span class="clip">V2</span> Diseño gráfico</p>
+          <h2 class="h2">Flyers</h2>
+          <p class="muted">En los marcados <b>Antes / Después</b>, usa los botones para ver la foto original.</p>
+        </div>
+        <div class="arrows">
+          <button class="icon-btn" data-scroll="#flyer-track" data-dir="-1" aria-label="Anterior">←</button>
+          <button class="icon-btn" data-scroll="#flyer-track" data-dir="1" aria-label="Siguiente">→</button>
+        </div>
+      </div>
+      <div class="carousel" id="flyer-track"></div>
+
+      <div class="section__head section__head--sub reveal">
+        <p class="eyebrow">Miniaturas para YouTube</p>
+      </div>
+      <div class="thumb-grid" id="thumb-grid"></div>
+    </section>
+
+    <section class="section" id="branding">
+      <div class="section__head reveal">
+        <p class="eyebrow"><span class="clip">V3</span> Identidad de marca</p>
+        <h2 class="h2">Logos &amp; branding</h2>
+        <p class="muted">Toca un logo para ver sus variaciones.</p>
+      </div>
+      <div class="brand-grid" id="logo-grid"></div>
+
+      <article class="case reveal" id="brand-case">
+        <div class="case__intro">
+          <span class="case__label">Caso de estudio · Manual de marca</span>
+          <h3 class="h3" data-case-title></h3>
+          <p class="muted" data-case-text></p>
+          <div class="arrows">
+            <button class="icon-btn" data-scroll="#case-track" data-dir="-1" aria-label="Anterior">←</button>
+            <button class="icon-btn" data-scroll="#case-track" data-dir="1" aria-label="Siguiente">→</button>
+          </div>
+        </div>
+        <div class="case__track" id="case-track"></div>
+      </article>
+    </section>
+
+    <!-- =================================================================
+         4. SOBRE MÍ  ·  bio + skills + educación (al final: lo principal es el trabajo)
          ================================================================= -->
     <section class="section" id="sobre-mi">
       <div class="about">
         <div class="about__text reveal">
-          <p class="eyebrow"><span class="clip">V0</span> Sobre mí</p>
+          <p class="eyebrow"><span class="clip clip--audio">A1</span> Sobre mí</p>
           <h2 class="h2">Cuento historias con cortes, color y diseño.</h2>
           <p class="lead">
             Soy Federico Castro, editor de video y diseñador gráfico. Hago que cada pieza tenga ritmo,
@@ -120,66 +179,7 @@
     </section>
 
     <!-- =================================================================
-         2. TRABAJOS  ·  video destacado + videos agrupados por cliente
-            (todo se genera desde js/data.js → featured y clients)
-         ================================================================= -->
-    <section class="section" id="trabajos">
-      <div class="section__head reveal">
-        <p class="eyebrow"><span class="clip">V1</span> Edición de video</p>
-        <h2 class="h2">Trabajos</h2>
-        <p class="muted">Elige un cliente para ver sus videos. Clic para reproducir con sonido.</p>
-      </div>
-      <div class="featured reveal" id="featured"></div>
-      <div class="clients" id="clients"></div>
-    </section>
-
-    <!-- =================================================================
-         3. DISEÑO  ·  flyers (carrusel) + miniaturas + branding
-         ================================================================= -->
-    <section class="section" id="diseno">
-      <div class="section__head section__head--row reveal">
-        <div>
-          <p class="eyebrow"><span class="clip">V2</span> Diseño gráfico</p>
-          <h2 class="h2">Flyers</h2>
-          <p class="muted">En los marcados <b>Antes / Después</b>, mueve la línea para comparar.</p>
-        </div>
-        <div class="arrows">
-          <button class="icon-btn" data-scroll="#flyer-track" data-dir="-1" aria-label="Anterior">←</button>
-          <button class="icon-btn" data-scroll="#flyer-track" data-dir="1" aria-label="Siguiente">→</button>
-        </div>
-      </div>
-      <div class="carousel" id="flyer-track"></div>
-
-      <div class="section__head section__head--sub reveal">
-        <p class="eyebrow">Miniaturas para YouTube</p>
-      </div>
-      <div class="thumb-grid" id="thumb-grid"></div>
-    </section>
-
-    <section class="section" id="branding">
-      <div class="section__head reveal">
-        <p class="eyebrow"><span class="clip">V3</span> Identidad de marca</p>
-        <h2 class="h2">Logos &amp; branding</h2>
-        <p class="muted">Toca un logo para ver sus variaciones.</p>
-      </div>
-      <div class="brand-grid" id="logo-grid"></div>
-
-      <article class="case reveal" id="brand-case">
-        <div class="case__intro">
-          <span class="case__label">Caso de estudio · Manual de marca</span>
-          <h3 class="h3" data-case-title></h3>
-          <p class="muted" data-case-text></p>
-          <div class="arrows">
-            <button class="icon-btn" data-scroll="#case-track" data-dir="-1" aria-label="Anterior">←</button>
-            <button class="icon-btn" data-scroll="#case-track" data-dir="1" aria-label="Siguiente">→</button>
-          </div>
-        </div>
-        <div class="case__track" id="case-track"></div>
-      </article>
-    </section>
-
-    <!-- =================================================================
-         4. SERVICIOS  ·  se genera desde js/data.js → services
+         5. SERVICIOS  ·  se genera desde js/data.js → services
          ================================================================= -->
     <section class="section" id="servicios">
       <div class="section__head reveal">
@@ -222,7 +222,7 @@
     <div class="lightbox__content"></div>
   </div>
 
-  <script src="js/data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/data.js?v=20261113b"></script>
+  <script src="js/main.js?v=20261113b"></script>
 </body>
 </html>

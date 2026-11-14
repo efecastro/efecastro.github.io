@@ -54,8 +54,21 @@ window.PORTFOLIO = {
        - propio:      { src: "assets/video/x.mp4", poster: "assets/video/x.jpg",
                         title: "Nombre", vertical: true }   (vertical = reel 9:16)
      Para agregar un cliente nuevo, copia un bloque completo { name: ... }.
+     El orden de la lista es el orden en la página. El primero sale abierto.
      ------------------------------------------------------------------ */
   clients: [
+    { name: "Color grading y motion", own: true, about: "Corrección de color e intros animadas", videos: [
+      { src: "assets/video/color-grading.mp4", poster: "assets/video/color-grading.jpg",
+        title: "Corrección de color · LOG → REC" },
+      { src: "assets/video/intro-vlog.mp4", poster: "assets/video/intro-vlog.jpg",
+        title: "Intro para vlog" }
+    ]},
+    { name: "Karen Giraldo", about: "Reels para TikTok e Instagram", videos: [
+      { src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg",
+        title: "Make up 21 años", vertical: true },
+      { src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg",
+        title: "FEM · Reel publicitario", vertical: true }
+    ]},
     { name: "c.kickssVlog", about: "Vlogs de sneakers y emprendimiento", videos: [
       { yt: "vXFsQtfSjt4", title: "El día que hicimos más de $5,000 vendiendo sneakers" },
       { yt: "ibprGbaymQs", title: "Montamos nuestra tienda en el mall más grande del Caribe" }
@@ -75,18 +88,6 @@ window.PORTFOLIO = {
     ]},
     { name: "El Muñetones", about: "Gaming", videos: [
       { yt: "3-H3vd8yy_s", title: "Locura de partidas en Hell Let Loose" }
-    ]},
-    { name: "Karen Giraldo", about: "Reel publicitario · FEM", videos: [
-      { src: "assets/video/reel-karen-giraldo.mp4", poster: "assets/video/reel-karen-giraldo.jpg",
-        title: "FEM · Reel publicitario", vertical: true }
-    ]},
-    { name: "Color, motion y reels", own: true, about: "Corrección de color, intros y contenido vertical", videos: [
-      { src: "assets/video/color-grading.mp4", poster: "assets/video/color-grading.jpg",
-        title: "Corrección de color · LOG → REC" },
-      { src: "assets/video/intro-vlog.mp4", poster: "assets/video/intro-vlog.jpg",
-        title: "Intro para vlog" },
-      { src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg",
-        title: "Make up 21 años · TikTok", vertical: true }
     ]}
   ],
 

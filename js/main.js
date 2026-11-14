@@ -13,6 +13,11 @@
      7. Servicios + WhatsApp
      8. Lightbox, carruseles y animaciones al hacer scroll
    ===================================================================== */
+// Seguro: el contenido solo se oculta para animarlo si este archivo carga bien.
+// Si algo falla, se quita la clase "js" y todo se muestra igual (nunca queda la página en blanco).
+document.documentElement.classList.add("js");
+addEventListener("error", () => document.documentElement.classList.remove("js"));
+
 (() => {
   /* =================================================================
      0. UTILIDADES
@@ -343,7 +348,7 @@
     };
     $(".client__head", item).addEventListener("click", () => toggle(!item.classList.contains("is-open")));
     $("#clients").appendChild(item);
-    if (i === 0) toggle(true); // el primero abierto
+    if (i < 2) toggle(true); // los dos primeros abiertos (color/motion y reels)
   });
 
   /* =================================================================
@@ -372,7 +377,6 @@
         </figcaption>
       </figure>`);
     const frame = $(".compare__frame", el);
-    let dragging = false;
     const setPos = (pct, animate = false) => {
       pct = Math.max(0, Math.min(100, pct));
       el.classList.toggle("is-animating", animate);
@@ -384,9 +388,14 @@
       const r = frame.getBoundingClientRect();
       return ((e.clientX - r.left) / r.width) * 100;
     };
-    frame.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse" || dragging) setPos(pctFromEvent(e)); });
-    frame.addEventListener("pointerdown", (e) => { dragging = true; setPos(pctFromEvent(e)); frame.setPointerCapture(e.pointerId); });
-    ["pointerup", "pointercancel"].forEach((t) => frame.addEventListener(t, () => (dragging = false)));
+    if (canHover) {
+      // Computador: la línea sigue al mouse
+      frame.addEventListener("pointermove", (e) => { if (e.pointerType === "mouse") setPos(pctFromEvent(e)); });
+    } else {
+      // Celular: sin arrastre (así deslizar el carrusel no mueve la línea).
+      // Un toque en la imagen cambia entre antes y después.
+      frame.addEventListener("click", () => setPos(el.dataset.state === "before" ? 100 : 0, true));
+    }
     frame.addEventListener("keydown", (e) => {
       const now = parseFloat(el.style.getPropertyValue("--pos"));
       if (e.key === "ArrowLeft") { setPos(now - 5); e.preventDefault(); }

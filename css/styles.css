@@ -442,7 +442,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .compare__frame {
   position: relative; aspect-ratio: 9 / 16; overflow: hidden;
   border-radius: var(--radius); border: 1px solid var(--line-2); background: var(--surface);
-  cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  cursor: ew-resize; user-select: none; -webkit-user-select: none;
   transition: box-shadow 0.5s var(--ease), border-color 0.5s;
 }
 .compare__frame:hover, .compare__frame:focus-visible { border-color: rgba(180,60,240,0.55); box-shadow: 0 24px 60px -24px var(--accent-glow); outline: none; }
@@ -698,8 +698,8 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
 .lightbox__close:hover { background: var(--accent); }
 
 /* ---------- aparición al hacer scroll ---------- */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
-.reveal.is-visible { opacity: 1; transform: none; }
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 960px) {
@@ -740,9 +740,10 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   .section__head--row .arrows { display: none; }
   .slide { flex-basis: 68vw; }
     .edu-list li { grid-template-columns: 1fr; gap: 2px; }
+  .compare__frame { cursor: pointer; }
   .brand figcaption { flex-direction: column; gap: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
-  .reveal { opacity: 1; transform: none; }
+  .js .reveal { opacity: 1; transform: none; }
 }
