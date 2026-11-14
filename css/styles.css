@@ -629,6 +629,13 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   .client:not(.is-open):hover { border-color: var(--line-2); }
 }
 
+/* Destacados lado a lado */
+.highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.highlight .vcard__info { display: block; padding-top: 12px; }
+.highlight .vcard__info h4 { font-family: var(--f-display); font-weight: 400; font-size: 26px; text-transform: uppercase; letter-spacing: 0.01em; }
+.highlight .vcard__info p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.skills--first { margin-top: 0; }
+
 /* =====================================================================
    DISEÑO: carrusel de flyers
    ===================================================================== */
@@ -710,6 +717,7 @@ button { font: inherit; color: inherit; cursor: pointer; border: 0; background: 
   .service-grid { grid-template-columns: repeat(2, 1fr); }
   .brand-grid { grid-template-columns: repeat(2, 1fr); }
   .skills, .edu { grid-template-columns: 1fr; }
+  .highlights { grid-template-columns: 1fr; }
   .client__thumbs { display: none; }
   .client__head { grid-template-columns: 48px 1fr auto 24px; }
 }

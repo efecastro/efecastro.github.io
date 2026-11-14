@@ -321,14 +321,21 @@ addEventListener("error", () => document.documentElement.classList.remove("js"))
     if (fullBtn) fullBtn.addEventListener("click", () => openFull(card));
   }
 
-  /* ---- 4.2 Clientes desplegables ---- */
+  /* ---- 4.2 Destacados: color grading y motion, lado a lado ---- */
+  (DATA.highlights || []).forEach((v) => {
+    const card = videoCard(v, "highlight reveal");
+    if (v.text) $(".vcard__info", card).insertAdjacentHTML("beforeend", `<p>${esc(v.text)}</p>`);
+    $("#highlights").appendChild(card);
+  });
+
+  /* ---- 4.3 Clientes desplegables ---- */
   const thumbOf = (v) => v.yt ? `https://i.ytimg.com/vi/${v.yt}/mqdefault.jpg` : v.poster;
   clients.forEach((c, i) => {
     const kinds = [...new Set(c.videos.map((v) => (v.yt ? "YouTube" : v.vertical ? "Reel" : "Video")))].join(" · ");
     const item = html(`
       <div class="client reveal">
         <button class="client__head" aria-expanded="false">
-          <span class="client__avatar"><img src="${thumbOf(c.videos[0])}" alt="" loading="lazy" /></span>
+          <span class="client__avatar"><img src="${c.avatar || thumbOf(c.videos[0])}" alt="" loading="lazy" /></span>
           <span class="client__name">${esc(c.name)}<small>${esc(c.about || "")}</small></span>
           <span class="client__meta">${c.videos.length} ${c.videos.length === 1 ? "video" : "videos"} · ${kinds}</span>
           <span class="client__thumbs" aria-hidden="true">
@@ -348,7 +355,7 @@ addEventListener("error", () => document.documentElement.classList.remove("js"))
     };
     $(".client__head", item).addEventListener("click", () => toggle(!item.classList.contains("is-open")));
     $("#clients").appendChild(item);
-    if (i < 2) toggle(true); // los dos primeros abiertos (color/motion y reels)
+    if (i === 0) toggle(true); // el primero sale abierto
   });
 
   /* =================================================================

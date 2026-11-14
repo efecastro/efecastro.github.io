@@ -19,16 +19,17 @@ La carpeta `sitio-web` es una copia vieja: se trabaja en la carpeta del reposito
 ## Orden de la página
 
 1. Portada (nombre grande, timecode)
-2. Trabajos: video destacado (fondo blanco) + grupos desplegables. Los dos primeros salen abiertos:
-   "Color grading y motion" y "Karen Giraldo" (reels). Luego los clientes de YouTube.
-3. Diseño: carrusel de flyers (animado, antes/después, normales) + miniaturas de YouTube
-4. Logos & branding: una tarjeta por marca (tocar = siguiente variación) + caso Los Perritos del Piti
-5. Sobre mí: bio, skills con estrellas, educación, idiomas (al final, lo principal es el trabajo)
-6. Servicios con botón "Cotizar" por WhatsApp
-7. Contacto + botón flotante de WhatsApp
+2. Sobre mí: bio y foto
+3. Trabajos: video destacado (fondo blanco) → destacados lado a lado (color grading y motion, en `highlights`)
+   → clientes desplegables (Karen Giraldo primero, abierto; luego los de YouTube). Foto de perfil con `avatar`.
+4. Diseño: carrusel de flyers + miniaturas de YouTube
+5. Logos & branding: tarjetas por marca + caso Los Perritos del Piti
+6. Habilidades: skills con estrellas, educación, idiomas
+7. Servicios con botón "Cotizar" por WhatsApp
+8. Contacto + botón flotante de WhatsApp
 
 **Al publicar cambios grandes:** en `index.html` sube el número `?v=...` de `styles.css`, `data.js` y `main.js`
-(ej. `?v=20261113b` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
+(ej. `?v=20261113c` → `?v=20261120`). Así los navegadores no mezclan archivos viejos con nuevos.
 Si aun así ves algo raro, recarga con Cmd + Shift + R.
 
 ## Cómo agregar cosas (todo en `js/data.js`)

@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="preload" as="image" href="assets/img/hero.webp" />
-  <link rel="stylesheet" href="css/styles.css?v=20261113b" />
+  <link rel="stylesheet" href="css/styles.css?v=20261113c" />
 </head>
 <body>
   <div class="grain" aria-hidden="true"></div>
@@ -27,9 +27,9 @@
   <header class="nav" id="nav">
     <a href="#inicio" class="nav__logo" aria-label="Inicio">FC<span>.</span></a>
     <nav class="nav__links" aria-label="Secciones">
+      <a href="#sobre-mi">Sobre mí</a>
       <a href="#trabajos">Trabajos</a>
       <a href="#diseno">Diseño</a>
-      <a href="#sobre-mi">Sobre mí</a>
       <a href="#servicios">Servicios</a>
       <a href="#contacto" class="nav__cta">Contacto</a>
     </nav>
@@ -60,28 +60,58 @@
         </div>
       </div>
 
-      <a href="#trabajos" class="hero__scroll" aria-label="Bajar">
+      <a href="#sobre-mi" class="hero__scroll" aria-label="Bajar">
         <span></span>
       </a>
     </section>
 
-
     <!-- =================================================================
-         1. TRABAJOS  ·  video destacado + videos agrupados por cliente
+         1. SOBRE MÍ  ·  quién soy (las skills y la educación van más abajo)
+         ================================================================= -->
+    <section class="section" id="sobre-mi">
+      <div class="about">
+        <div class="about__text reveal">
+          <p class="eyebrow"><span class="clip">V0</span> Sobre mí</p>
+          <h2 class="h2">Cuento historias con cortes, color y diseño.</h2>
+          <p class="lead">
+            Soy Federico Castro, editor de video y diseñador gráfico. Hago que cada pieza tenga ritmo,
+            buen color y un mensaje claro: videos para YouTube, reels y TikToks, flyers e identidades de marca.
+          </p>
+          <p class="muted">
+            También soy programador, formado en el SENA en aplicaciones y servicios para la nube:
+            entiendo tanto la parte creativa como la técnica.
+          </p>
+        </div>
+        <figure class="about__photo reveal">
+          <img src="assets/img/about.webp" alt="Federico Castro sentado en una Vespa de noche" loading="lazy" width="740" height="1080" />
+        </figure>
+      </div>
+
+    </section>
+    <!-- =================================================================
+         2. TRABAJOS  ·  video destacado + destacados (color y motion) + clientes
             (todo se genera desde js/data.js → featured y clients)
          ================================================================= -->
     <section class="section" id="trabajos">
       <div class="section__head reveal">
         <p class="eyebrow"><span class="clip">V1</span> Edición de video</p>
         <h2 class="h2">Trabajos</h2>
-        <p class="muted">Toca un video para reproducirlo con sonido. Abajo, mis clientes: elige uno para ver sus videos.</p>
+        <p class="muted">Toca un video para reproducirlo con sonido. Más abajo, elige un cliente para ver sus videos.</p>
       </div>
       <div class="featured reveal" id="featured"></div>
+
+      <!-- Destacados: color grading y motion, lado a lado -->
+      <div class="highlights" id="highlights"></div>
+
+      <!-- Clientes desplegables -->
+      <div class="section__head section__head--sub reveal">
+        <p class="eyebrow">Clientes</p>
+      </div>
       <div class="clients" id="clients"></div>
     </section>
 
     <!-- =================================================================
-         2. DISEÑO  ·  flyers (carrusel) + miniaturas + branding
+         3. DISEÑO  ·  flyers (carrusel) + miniaturas + branding
          ================================================================= -->
     <section class="section" id="diseno">
       <div class="section__head section__head--row reveal">
@@ -126,29 +156,15 @@
     </section>
 
     <!-- =================================================================
-         4. SOBRE MÍ  ·  bio + skills + educación (al final: lo principal es el trabajo)
+         4. HABILIDADES  ·  skills (desde js/data.js) + educación e idiomas
          ================================================================= -->
-    <section class="section" id="sobre-mi">
-      <div class="about">
-        <div class="about__text reveal">
-          <p class="eyebrow"><span class="clip clip--audio">A1</span> Sobre mí</p>
-          <h2 class="h2">Cuento historias con cortes, color y diseño.</h2>
-          <p class="lead">
-            Soy Federico Castro, editor de video y diseñador gráfico. Hago que cada pieza tenga ritmo,
-            buen color y un mensaje claro: videos para YouTube, reels y TikToks, flyers e identidades de marca.
-          </p>
-          <p class="muted">
-            También soy programador, formado en el SENA en aplicaciones y servicios para la nube:
-            entiendo tanto la parte creativa como la técnica.
-          </p>
-        </div>
-        <figure class="about__photo reveal">
-          <img src="assets/img/about.webp" alt="Federico Castro sentado en una Vespa de noche" loading="lazy" width="740" height="1080" />
-        </figure>
+    <section class="section" id="habilidades">
+      <div class="section__head reveal">
+        <p class="eyebrow"><span class="clip clip--audio">A1</span> Habilidades</p>
+        <h2 class="h2">Herramientas y formación</h2>
       </div>
-
       <!-- Skills -->
-      <div class="skills reveal">
+      <div class="skills skills--first reveal">
         <div class="panel">
           <h3 class="panel__title">Edición y diseño</h3>
           <ul class="skill-list" id="skills-creative"></ul>
@@ -222,7 +238,7 @@
     <div class="lightbox__content"></div>
   </div>
 
-  <script src="js/data.js?v=20261113b"></script>
-  <script src="js/main.js?v=20261113b"></script>
+  <script src="js/data.js?v=20261113c"></script>
+  <script src="js/main.js?v=20261113c"></script>
 </body>
 </html>

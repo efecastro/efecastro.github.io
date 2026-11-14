@@ -47,6 +47,16 @@ window.PORTFOLIO = {
   },
 
   /* ------------------------------------------------------------------
+     2.1 DESTACADOS (lado a lado, debajo del video destacado)
+     ------------------------------------------------------------------ */
+  highlights: [
+    { src: "assets/video/color-grading.mp4", poster: "assets/video/color-grading.jpg",
+      title: "Color grading", text: "Corrección de color LOG → REC, comparativa OFF / ON" },
+    { src: "assets/video/intro-vlog.mp4", poster: "assets/video/intro-vlog.jpg",
+      title: "Motion design", text: "Intro animada para vlog: títulos, ritmo y transiciones" }
+  ],
+
+  /* ------------------------------------------------------------------
      3. CLIENTES Y SUS VIDEOS (cada cliente es una fila que se despliega)
      Cada video puede ser:
        - de YouTube:  { yt: "ID" }   (ID = lo que va después de watch?v=)
@@ -54,15 +64,11 @@ window.PORTFOLIO = {
        - propio:      { src: "assets/video/x.mp4", poster: "assets/video/x.jpg",
                         title: "Nombre", vertical: true }   (vertical = reel 9:16)
      Para agregar un cliente nuevo, copia un bloque completo { name: ... }.
+     avatar (opcional): foto de perfil, ej. "assets/avatars/andresosky.webp".
+              Si no hay, se usa la miniatura de su primer video.
      El orden de la lista es el orden en la página. El primero sale abierto.
      ------------------------------------------------------------------ */
   clients: [
-    { name: "Color grading y motion", own: true, about: "Corrección de color e intros animadas", videos: [
-      { src: "assets/video/color-grading.mp4", poster: "assets/video/color-grading.jpg",
-        title: "Corrección de color · LOG → REC" },
-      { src: "assets/video/intro-vlog.mp4", poster: "assets/video/intro-vlog.jpg",
-        title: "Intro para vlog" }
-    ]},
     { name: "Karen Giraldo", about: "Reels para TikTok e Instagram", videos: [
       { src: "assets/video/reel-amor.mp4", poster: "assets/video/reel-amor.jpg",
         title: "Make up 21 años", vertical: true },
